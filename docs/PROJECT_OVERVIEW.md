@@ -83,13 +83,13 @@ External APIs  →  Nitro scheduled tasks  →  Supabase (cache/store)
 - [x] Personalize home page based on favorites
 - [x] Highlight favorites in standings and match lists
 
-### Phase 5: Authentication
+### Phase 5: Authentication ✅
 
-- [ ] Configure Supabase Auth (email/password)
-- [ ] Build login, register, and confirm pages
-- [ ] Build auth middleware and settings page
-- [ ] Implement user preference API routes
-- [ ] Merge localStorage favorites with DB on login
+- [x] Configure Supabase Auth (email/password)
+- [x] Build login, register, and confirm pages
+- [x] Build auth middleware and settings page
+- [x] Implement user preference API routes
+- [x] Merge localStorage favorites with DB on login
 
 ### Phase 6: i18n Polish
 

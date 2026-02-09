@@ -50,6 +50,11 @@ export function useFavoriteTeams() {
     return favoriteTeamIds.value.includes(externalId)
   }
 
+  function setFavorites(ids: number[]) {
+    favoriteTeamIds.value = [...ids]
+    persist()
+  }
+
   function clearFavorites() {
     favoriteTeamIds.value = []
     persist()
@@ -66,6 +71,7 @@ export function useFavoriteTeams() {
     removeFavorite,
     toggleFavorite,
     isFavorite,
+    setFavorites,
     clearFavorites,
   }
 }

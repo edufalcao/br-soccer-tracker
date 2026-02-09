@@ -70,13 +70,34 @@
     "forgotPassword": "Forgot password?",
     "noAccount": "Don't have an account?",
     "hasAccount": "Already have an account?",
-    "checkEmail": "Check your email to confirm your registration"
+    "checkEmail": "Check your email to confirm your registration",
+    "loginTitle": "Log in to your account",
+    "registerTitle": "Create your account",
+    "forgotPasswordTitle": "Reset your password",
+    "resetPasswordTitle": "Set a new password",
+    "newPassword": "New password",
+    "sendResetLink": "Send reset link",
+    "resetPassword": "Reset password",
+    "emailConfirmed": "Your account has been confirmed!",
+    "redirecting": "Redirecting...",
+    "confirmingAccount": "Confirming your account...",
+    "invalidToken": "This link is invalid or has expired.",
+    "passwordUpdated": "Your password has been updated.",
+    "passwordMinLength": "Password must be at least 6 characters",
+    "passwordsNoMatch": "Passwords do not match",
+    "loginError": "Invalid email or password",
+    "registerError": "Could not create account. Please try again."
   },
   "settings": {
     "title": "Settings",
     "language": "Language",
     "account": "Account",
-    "changePassword": "Change password"
+    "changePassword": "Change password",
+    "accountEmail": "Email",
+    "favoriteTeams": "Favorite Teams",
+    "manageFavorites": "Manage favorites",
+    "languageDescription": "Choose your preferred language",
+    "logoutConfirm": "Are you sure you want to log out?"
   },
   "competitions": {
     "serie_a": "Brazilian Serie A",

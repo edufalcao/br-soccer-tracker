@@ -70,13 +70,34 @@
     "forgotPassword": "Esqueceu a senha?",
     "noAccount": "Não tem conta?",
     "hasAccount": "Já tem conta?",
-    "checkEmail": "Verifique seu e-mail para confirmar o cadastro"
+    "checkEmail": "Verifique seu e-mail para confirmar o cadastro",
+    "loginTitle": "Entre na sua conta",
+    "registerTitle": "Crie sua conta",
+    "forgotPasswordTitle": "Redefinir sua senha",
+    "resetPasswordTitle": "Definir nova senha",
+    "newPassword": "Nova senha",
+    "sendResetLink": "Enviar link de redefinição",
+    "resetPassword": "Redefinir senha",
+    "emailConfirmed": "Sua conta foi confirmada!",
+    "redirecting": "Redirecionando...",
+    "confirmingAccount": "Confirmando sua conta...",
+    "invalidToken": "Este link é inválido ou expirou.",
+    "passwordUpdated": "Sua senha foi atualizada.",
+    "passwordMinLength": "A senha deve ter pelo menos 6 caracteres",
+    "passwordsNoMatch": "As senhas não coincidem",
+    "loginError": "E-mail ou senha inválidos",
+    "registerError": "Não foi possível criar a conta. Tente novamente."
   },
   "settings": {
     "title": "Configurações",
     "language": "Idioma",
     "account": "Conta",
-    "changePassword": "Alterar senha"
+    "changePassword": "Alterar senha",
+    "accountEmail": "E-mail",
+    "favoriteTeams": "Times Favoritos",
+    "manageFavorites": "Gerenciar favoritos",
+    "languageDescription": "Escolha seu idioma preferido",
+    "logoutConfirm": "Tem certeza que deseja sair?"
   },
   "competitions": {
     "serie_a": "Brasileirão Série A",

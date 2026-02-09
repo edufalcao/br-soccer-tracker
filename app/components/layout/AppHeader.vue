@@ -1,5 +1,7 @@
 <script setup lang="ts">
   const { t } = useI18n()
+  const user = useSupabaseUser()
+  const supabase = useSupabaseClient()
 
   const navItems = computed(() => [
     { to: '/', label: t('nav.home') },
@@ -8,6 +10,20 @@
     { to: '/standings', label: t('nav.standings') },
     { to: '/favorites', label: t('nav.favorites') },
   ])
+
+  const loggingOut = ref(false)
+
+  async function handleLogout() {
+    loggingOut.value = true
+    try {
+      await supabase.auth.signOut()
+      const { clearPreferences } = useUserPreferences()
+      clearPreferences()
+      await navigateTo('/')
+    } finally {
+      loggingOut.value = false
+    }
+  }
 </script>
 
 <template>
@@ -31,7 +47,28 @@
 
       <div class="flex items-center gap-3">
         <LayoutLanguageSwitcher />
+
+        <!-- Authenticated: Settings + Logout -->
+        <template v-if="user">
+          <NuxtLink
+            to="/settings"
+            class="text-sm font-medium text-pitch-100 transition-colors hover:text-white"
+            active-class="text-accent"
+          >
+            {{ t('nav.settings') }}
+          </NuxtLink>
+          <button
+            :disabled="loggingOut"
+            class="rounded-md bg-slate-700 px-3 py-1.5 text-sm font-medium text-pitch-100 transition-colors hover:bg-slate-600 disabled:opacity-50"
+            @click="handleLogout"
+          >
+            {{ t('nav.logout') }}
+          </button>
+        </template>
+
+        <!-- Not authenticated: Login button -->
         <NuxtLink
+          v-else
           to="/auth/login"
           class="rounded-md bg-accent px-3 py-1.5 text-sm font-medium text-pitch-900 transition-colors hover:bg-accent-light"
         >
