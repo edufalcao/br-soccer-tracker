@@ -1,0 +1,92 @@
+{
+  "nav": {
+    "home": "Início",
+    "news": "Notícias",
+    "matches": "Jogos",
+    "standings": "Classificação",
+    "favorites": "Favoritos",
+    "settings": "Configurações",
+    "login": "Entrar",
+    "register": "Cadastrar",
+    "logout": "Sair"
+  },
+  "home": {
+    "title": "BR Soccer Tracker",
+    "yourTeams": "Seus Times",
+    "latestNews": "Últimas Notícias",
+    "liveScores": "Ao Vivo"
+  },
+  "news": {
+    "title": "Notícias",
+    "readMore": "Leia mais",
+    "source": "Fonte",
+    "noNews": "Nenhuma notícia encontrada",
+    "filterByCompetition": "Filtrar por competição",
+    "filterByTeam": "Filtrar por time"
+  },
+  "matches": {
+    "title": "Jogos",
+    "live": "Ao Vivo",
+    "recent": "Resultados",
+    "upcoming": "Próximos Jogos",
+    "noMatches": "Nenhum jogo encontrado",
+    "halftime": "Intervalo",
+    "fulltime": "Encerrado",
+    "scheduled": "Agendado",
+    "postponed": "Adiado"
+  },
+  "standings": {
+    "title": "Classificação",
+    "position": "Pos",
+    "team": "Time",
+    "played": "J",
+    "won": "V",
+    "drawn": "E",
+    "lost": "D",
+    "goalsFor": "GP",
+    "goalsAgainst": "GC",
+    "goalDifference": "SG",
+    "points": "Pts",
+    "form": "Forma"
+  },
+  "favorites": {
+    "title": "Times Favoritos",
+    "subtitle": "Selecione seus times para personalizar sua experiência",
+    "noFavorites": "Você ainda não selecionou nenhum time favorito",
+    "selectTeams": "Selecionar times",
+    "search": "Buscar time..."
+  },
+  "auth": {
+    "login": "Entrar",
+    "register": "Cadastrar",
+    "email": "E-mail",
+    "password": "Senha",
+    "confirmPassword": "Confirmar senha",
+    "forgotPassword": "Esqueceu a senha?",
+    "noAccount": "Não tem conta?",
+    "hasAccount": "Já tem conta?",
+    "checkEmail": "Verifique seu e-mail para confirmar o cadastro"
+  },
+  "settings": {
+    "title": "Configurações",
+    "language": "Idioma",
+    "account": "Conta",
+    "changePassword": "Alterar senha"
+  },
+  "competitions": {
+    "serie_a": "Brasileirão Série A",
+    "serie_b": "Brasileirão Série B",
+    "copa_do_brasil": "Copa do Brasil",
+    "all": "Todas"
+  },
+  "common": {
+    "loading": "Carregando...",
+    "error": "Erro",
+    "retry": "Tentar novamente",
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "back": "Voltar",
+    "seeAll": "Ver tudo",
+    "noResults": "Nenhum resultado encontrado"
+  }
+}

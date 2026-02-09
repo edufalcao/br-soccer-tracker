@@ -1,0 +1,92 @@
+{
+  "nav": {
+    "home": "Home",
+    "news": "News",
+    "matches": "Matches",
+    "standings": "Standings",
+    "favorites": "Favorites",
+    "settings": "Settings",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout"
+  },
+  "home": {
+    "title": "BR Soccer Tracker",
+    "yourTeams": "Your Teams",
+    "latestNews": "Latest News",
+    "liveScores": "Live Scores"
+  },
+  "news": {
+    "title": "News",
+    "readMore": "Read more",
+    "source": "Source",
+    "noNews": "No news found",
+    "filterByCompetition": "Filter by competition",
+    "filterByTeam": "Filter by team"
+  },
+  "matches": {
+    "title": "Matches",
+    "live": "Live",
+    "recent": "Results",
+    "upcoming": "Upcoming",
+    "noMatches": "No matches found",
+    "halftime": "Half-time",
+    "fulltime": "Full-time",
+    "scheduled": "Scheduled",
+    "postponed": "Postponed"
+  },
+  "standings": {
+    "title": "Standings",
+    "position": "Pos",
+    "team": "Team",
+    "played": "P",
+    "won": "W",
+    "drawn": "D",
+    "lost": "L",
+    "goalsFor": "GF",
+    "goalsAgainst": "GA",
+    "goalDifference": "GD",
+    "points": "Pts",
+    "form": "Form"
+  },
+  "favorites": {
+    "title": "Favorite Teams",
+    "subtitle": "Select your teams to personalize your experience",
+    "noFavorites": "You haven't selected any favorite teams yet",
+    "selectTeams": "Select teams",
+    "search": "Search team..."
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "forgotPassword": "Forgot password?",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "checkEmail": "Check your email to confirm your registration"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "account": "Account",
+    "changePassword": "Change password"
+  },
+  "competitions": {
+    "serie_a": "Brazilian Serie A",
+    "serie_b": "Brazilian Serie B",
+    "copa_do_brasil": "Copa do Brasil",
+    "all": "All"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "retry": "Try again",
+    "save": "Save",
+    "cancel": "Cancel",
+    "back": "Back",
+    "seeAll": "See all",
+    "noResults": "No results found"
+  }
+}
