@@ -91,12 +91,12 @@ External APIs  →  Nitro scheduled tasks  →  Supabase (cache/store)
 - [x] Implement user preference API routes
 - [x] Merge localStorage favorites with DB on login
 
-### Phase 6: i18n Polish
+### Phase 6: i18n Polish ✅
 
-- [ ] Complete all translation keys
-- [ ] Language switcher persistence (cookie + DB)
-- [ ] Locale-aware date/time formatting
-- [ ] News content fallback strategy
+- [x] Complete all translation keys
+- [x] Language switcher persistence (cookie + DB)
+- [x] Locale-aware date/time formatting
+- [x] News content fallback strategy
 
 ### Phase 7: Mobile-First Design Polish
 

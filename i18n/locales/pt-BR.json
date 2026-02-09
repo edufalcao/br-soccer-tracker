@@ -97,7 +97,9 @@
     "favoriteTeams": "Times Favoritos",
     "manageFavorites": "Gerenciar favoritos",
     "languageDescription": "Escolha seu idioma preferido",
-    "logoutConfirm": "Tem certeza que deseja sair?"
+    "logoutConfirm": "Tem certeza que deseja sair?",
+    "languagePtBr": "Português",
+    "languageEn": "English"
   },
   "competitions": {
     "serie_a": "Brasileirão Série A",

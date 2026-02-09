@@ -97,7 +97,9 @@
     "favoriteTeams": "Favorite Teams",
     "manageFavorites": "Manage favorites",
     "languageDescription": "Choose your preferred language",
-    "logoutConfirm": "Are you sure you want to log out?"
+    "logoutConfirm": "Are you sure you want to log out?",
+    "languagePtBr": "Português",
+    "languageEn": "English"
   },
   "competitions": {
     "serie_a": "Brazilian Serie A",

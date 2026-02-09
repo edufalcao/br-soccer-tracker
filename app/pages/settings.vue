@@ -79,7 +79,7 @@
           "
           @click="changeLanguage('pt-BR')"
         >
-          Portugues
+          {{ t('settings.languagePtBr') }}
         </button>
         <button
           :disabled="savingLanguage"
@@ -89,7 +89,7 @@
           "
           @click="changeLanguage('en')"
         >
-          English
+          {{ t('settings.languageEn') }}
         </button>
       </div>
     </BaseCard>

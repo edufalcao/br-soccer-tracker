@@ -38,6 +38,14 @@ export function useUserPreferences() {
     // Fetch DB preferences
     await fetchPreferences()
 
+    // Restore language preference from DB
+    if (preferences.value?.language) {
+      const { locale, setLocale } = useI18n()
+      if (preferences.value.language !== locale.value) {
+        await setLocale(preferences.value.language)
+      }
+    }
+
     // Union of localStorage + DB favorites
     const dbFavorites = preferences.value?.favoriteTeamIds ?? []
     const merged = [...new Set([...localFavorites.value, ...dbFavorites])]

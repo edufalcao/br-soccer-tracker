@@ -1,9 +1,15 @@
 <script setup lang="ts">
   const { locale, setLocale } = useI18n()
+  const user = useSupabaseUser()
+  const { savePreferences } = useUserPreferences()
 
-  function toggleLanguage() {
+  async function toggleLanguage() {
     const newLocale = locale.value === 'pt-BR' ? 'en' : 'pt-BR'
-    setLocale(newLocale)
+    await setLocale(newLocale)
+
+    if (user.value) {
+      savePreferences({ language: newLocale })
+    }
   }
 
   const label = computed(() => (locale.value === 'pt-BR' ? 'EN' : 'PT'))
