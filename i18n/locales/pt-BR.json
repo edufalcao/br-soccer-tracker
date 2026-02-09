@@ -15,7 +15,8 @@
     "yourTeams": "Seus Times",
     "latestNews": "Últimas Notícias",
     "liveScores": "Ao Vivo",
-    "noLiveMatches": "Nenhum jogo ao vivo no momento"
+    "noLiveMatches": "Nenhum jogo ao vivo no momento",
+    "noFavoriteMatches": "Nenhum jogo programado para seus times"
   },
   "news": {
     "title": "Notícias",
@@ -56,7 +57,9 @@
     "subtitle": "Selecione seus times para personalizar sua experiência",
     "noFavorites": "Você ainda não selecionou nenhum time favorito",
     "selectTeams": "Selecionar times",
-    "search": "Buscar time..."
+    "search": "Buscar time...",
+    "teamsSelected": "{count} time selecionado | {count} times selecionados",
+    "clearAll": "Limpar todos"
   },
   "auth": {
     "login": "Entrar",

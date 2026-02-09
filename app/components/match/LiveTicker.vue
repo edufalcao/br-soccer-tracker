@@ -6,6 +6,7 @@
 
   const { t } = useI18n()
   const { getTeamName } = useTeams()
+  const { isFavorite } = useFavoriteTeams()
 
   function shortName(externalId: number): string {
     return props.teamMap.get(externalId)?.shortName || getTeamName(externalId)
@@ -21,7 +22,10 @@
       v-for="match in matches"
       :key="match.id"
       to="/matches"
-      class="flex min-w-[10rem] shrink-0 items-center gap-2 rounded-lg bg-red-50 px-3 py-2 ring-1 ring-red-100 transition-colors hover:bg-red-100"
+      class="flex min-w-[10rem] shrink-0 items-center gap-2 rounded-lg bg-red-50 px-3 py-2 transition-colors hover:bg-red-100"
+      :class="
+        isFavorite(match.homeTeamId) || isFavorite(match.awayTeamId) ? 'ring-2 ring-accent' : 'ring-1 ring-red-100'
+      "
     >
       <span class="relative flex h-2 w-2">
         <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75" />

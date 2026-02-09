@@ -3,6 +3,7 @@
   useHead({ title: t('home.title') })
 
   const { teamMap } = useTeams()
+  const { hasFavorites, isFavorite } = useFavoriteTeams()
 
   // Live matches
   const { data: liveData, refresh: refreshLive } = useFetch('/api/matches/live', {
@@ -22,6 +23,21 @@
     default: () => ({ data: [] }),
   })
   const latestNews = computed(() => newsData.value?.data ?? [])
+
+  // Upcoming matches (for "Your Teams" section)
+  const { data: upcomingData } = useFetch('/api/matches/upcoming', {
+    query: { limit: 20 },
+    transform: (res: { data: Record<string, unknown>[] }) => ({
+      data: snakeToCamelArray<Match>(res.data),
+    }),
+    default: () => ({ data: [] }),
+  })
+  const favoriteUpcomingMatches = computed(() => {
+    if (!hasFavorites.value) return []
+    return (upcomingData.value?.data ?? [])
+      .filter((m) => isFavorite(m.homeTeamId) || isFavorite(m.awayTeamId))
+      .slice(0, 5)
+  })
 
   // Serie A standings
   const serieAComp = ref<Competition>('serie_a')
@@ -49,6 +65,18 @@
     <section>
       <h2 class="mb-3 text-lg font-semibold text-slate-800">{{ t('home.liveScores') }}</h2>
       <MatchLiveTicker :matches="liveMatches" :team-map="teamMap" />
+    </section>
+
+    <!-- Your Teams (favorites) -->
+    <section v-if="hasFavorites">
+      <div class="mb-3 flex items-center justify-between">
+        <h2 class="text-lg font-semibold text-slate-800">{{ t('home.yourTeams') }}</h2>
+        <NuxtLink to="/favorites" class="text-sm font-medium text-pitch-700 hover:text-pitch-900">
+          {{ t('favorites.selectTeams') }} &rarr;
+        </NuxtLink>
+      </div>
+      <MatchList v-if="favoriteUpcomingMatches.length" :matches="favoriteUpcomingMatches" :team-map="teamMap" />
+      <BaseEmptyState v-else :message="t('home.noFavoriteMatches')" />
     </section>
 
     <!-- Latest News -->

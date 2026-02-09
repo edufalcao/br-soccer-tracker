@@ -14,6 +14,7 @@
 
   const { t } = useI18n()
   const { getTeamName } = useTeams()
+  const { favoriteSet } = useFavoriteTeams()
 
   const displayStandings = computed(() => (props.compact ? props.standings.slice(0, 5) : props.standings))
 
@@ -63,13 +64,17 @@
           v-for="entry in displayStandings"
           :key="entry.teamExternalId"
           class="border-b border-slate-100 transition-colors hover:bg-slate-50"
-          :class="zoneClass(entry.position)"
+          :class="[zoneClass(entry.position), favoriteSet.has(entry.teamExternalId) && 'bg-accent/5']"
         >
           <td class="px-2 py-2 text-center text-xs font-medium text-slate-500">{{ entry.position }}</td>
           <td class="px-2 py-2">
             <div class="flex items-center gap-2">
+              <FavoriteStarIcon v-if="favoriteSet.has(entry.teamExternalId)" size="xs" />
               <TeamBadge :team="teamMap.get(entry.teamExternalId)" size="sm" />
-              <span class="truncate font-medium">
+              <span
+                class="truncate"
+                :class="favoriteSet.has(entry.teamExternalId) ? 'font-bold text-pitch-900' : 'font-medium'"
+              >
                 {{
                   compact
                     ? teamMap.get(entry.teamExternalId)?.shortName || getTeamName(entry.teamExternalId)

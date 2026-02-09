@@ -5,9 +5,11 @@
   }>()
 
   const { getTeamName } = useTeams()
+  const { isFavorite } = useFavoriteTeams()
 
   const homeTeam = computed(() => props.teamMap.get(props.match.homeTeamId))
   const awayTeam = computed(() => props.teamMap.get(props.match.awayTeamId))
+  const isFavoriteMatch = computed(() => isFavorite(props.match.homeTeamId) || isFavorite(props.match.awayTeamId))
 
   const scoreDisplay = computed(() => {
     if (props.match.status === 'scheduled') return '—'
@@ -16,10 +18,11 @@
 </script>
 
 <template>
-  <BaseCard class="!p-3">
+  <BaseCard class="!p-3" :class="isFavoriteMatch && 'border-l-4 border-l-accent'">
     <div class="flex items-center gap-3">
       <!-- Home team -->
       <div class="flex flex-1 items-center justify-end gap-2 text-right">
+        <FavoriteStarIcon v-if="isFavorite(match.homeTeamId)" size="xs" />
         <span class="truncate text-sm font-medium">{{ getTeamName(match.homeTeamId) }}</span>
         <TeamBadge :team="homeTeam" size="sm" />
       </div>
@@ -40,6 +43,7 @@
       <div class="flex flex-1 items-center gap-2">
         <TeamBadge :team="awayTeam" size="sm" />
         <span class="truncate text-sm font-medium">{{ getTeamName(match.awayTeamId) }}</span>
+        <FavoriteStarIcon v-if="isFavorite(match.awayTeamId)" size="xs" />
       </div>
     </div>
 

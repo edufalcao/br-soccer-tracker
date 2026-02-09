@@ -15,7 +15,8 @@
     "yourTeams": "Your Teams",
     "latestNews": "Latest News",
     "liveScores": "Live Scores",
-    "noLiveMatches": "No live matches right now"
+    "noLiveMatches": "No live matches right now",
+    "noFavoriteMatches": "No upcoming matches for your teams"
   },
   "news": {
     "title": "News",
@@ -56,7 +57,9 @@
     "subtitle": "Select your teams to personalize your experience",
     "noFavorites": "You haven't selected any favorite teams yet",
     "selectTeams": "Select teams",
-    "search": "Search team..."
+    "search": "Search team...",
+    "teamsSelected": "{count} team selected | {count} teams selected",
+    "clearAll": "Clear all"
   },
   "auth": {
     "login": "Login",
