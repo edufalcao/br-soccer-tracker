@@ -76,12 +76,12 @@ External APIs  →  Nitro scheduled tasks  →  Supabase (cache/store)
 - [x] Matches page (Live / Recent / Upcoming tabs)
 - [x] Standings page (competition tabs + responsive table)
 
-### Phase 4: Favorite Teams
+### Phase 4: Favorite Teams ✅
 
-- [ ] Build `useFavoriteTeams` composable (dual persistence)
-- [ ] Build FavoriteTeamPicker component and /favorites page
-- [ ] Personalize home page based on favorites
-- [ ] Highlight favorites in standings and match lists
+- [x] Build `useFavoriteTeams` composable (localStorage persistence; Supabase sync deferred to Phase 5)
+- [x] Build FavoriteTeamPicker component and /favorites page
+- [x] Personalize home page based on favorites
+- [x] Highlight favorites in standings and match lists
 
 ### Phase 5: Authentication
 
