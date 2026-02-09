@@ -110,4 +110,25 @@ External APIs  →  Nitro scheduled tasks  →  Supabase (cache/store)
 - [ ] Unit tests for composables (Vitest)
 - [ ] Component tests (@nuxt/test-utils)
 - [ ] API route tests
-- [ ] Global error page and graceful degradation
+- [ ] E2E tests (Playwright)
+- [ ] Global error page (`error.vue`) and graceful degradation
+
+### Phase 9: Resilience & API Management
+
+- [ ] Rate-limit tracking for external APIs (API-Football 100 req/day, GNews 100 req/day)
+- [ ] Fallback logic: API-Football → football-data.org, GNews → Google News RSS
+- [ ] Retry with exponential backoff for transient failures
+- [ ] Health check endpoint (`/api/health`)
+
+### Phase 10: CI/CD & Deployment
+
+- [ ] GitHub Actions CI pipeline (lint, type-check, test)
+- [ ] Docker production build validation
+- [ ] Staging environment setup
+- [ ] Production deployment configuration
+
+### Phase 11: Monitoring & Observability
+
+- [ ] Structured server-side logging (Nitro tasks, API routes)
+- [ ] Error tracking integration (e.g., Sentry)
+- [ ] Scheduled task execution dashboard / status page
