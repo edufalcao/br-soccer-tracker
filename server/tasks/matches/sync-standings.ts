@@ -39,6 +39,6 @@ export default defineTask({
       }
     }
 
-    return { result: results }
+    return { result: JSON.stringify(results) }
   },
 })
