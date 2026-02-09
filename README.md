@@ -15,8 +15,7 @@ Live scores, match results, league standings, and news — all in one place.
 ## Prerequisites
 
 - [Node.js](https://nodejs.org/) >= 24
-- [Supabase CLI](https://supabase.com/docs/guides/cli) (for local database)
-- [Docker](https://www.docker.com/) (optional, for containerized dev)
+- [Docker](https://www.docker.com/) (required for local Supabase, optional for containerized dev)
 
 ## Getting Started
 
@@ -45,7 +44,7 @@ Edit `.env` with your keys:
 ### 3. Start Supabase locally
 
 ```bash
-supabase start
+npm run db:start
 ```
 
 This spins up a local Postgres database, Auth server, and REST API. Migrations in `supabase/migrations/` are applied automatically.
@@ -66,7 +65,7 @@ The app is available at [http://localhost:3000](http://localhost:3000).
 docker compose up
 ```
 
-Runs the Nuxt dev server with hot reload inside a container. Requires a running Supabase instance (via `supabase start` on the host or a separate Supabase container).
+Runs the Nuxt dev server with hot reload inside a container. Requires a running Supabase instance (via `npm run db:start` on the host or a separate Supabase container).
 
 ### Production build
 
@@ -77,15 +76,19 @@ docker run -p 3000:3000 --env-file .env br-soccer-tracker
 
 ## Scripts
 
-| Command                | Description                    |
-| ---------------------- | ------------------------------ |
-| `npm run dev`          | Start development server       |
-| `npm run build`        | Build for production           |
-| `npm run preview`      | Preview production build       |
-| `npm run lint`         | Run ESLint                     |
-| `npm run lint:fix`     | Run ESLint with auto-fix       |
-| `npm run format`       | Format all files with Prettier |
-| `npm run format:check` | Check Prettier formatting      |
+| Command                | Description                        |
+| ---------------------- | ---------------------------------- |
+| `npm run dev`          | Start development server           |
+| `npm run build`        | Build for production               |
+| `npm run preview`      | Preview production build           |
+| `npm run lint`         | Run ESLint                         |
+| `npm run lint:fix`     | Run ESLint with auto-fix           |
+| `npm run format`       | Format all files with Prettier     |
+| `npm run format:check` | Check Prettier formatting          |
+| `npm run db:start`     | Start local Supabase (via Docker)  |
+| `npm run db:stop`      | Stop local Supabase                |
+| `npm run db:reset`     | Reset database & re-run migrations |
+| `npm run db:status`    | Show Supabase service status       |
 
 ## Project Structure
 
