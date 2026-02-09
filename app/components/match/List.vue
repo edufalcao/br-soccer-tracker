@@ -25,7 +25,9 @@
     }
 
     for (const [dateKey, matches] of map) {
-      const label = formatRelativeDate(matches[0].kickoffAt, locale.value, {
+      const first = matches[0]
+      if (!first) continue
+      const label = formatRelativeDate(first.kickoffAt, locale.value, {
         today: t('common.today'),
         yesterday: t('common.yesterday'),
         tomorrow: t('common.tomorrow'),

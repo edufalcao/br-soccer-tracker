@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  withDefaults(
+  const props = withDefaults(
     defineProps<{
       articles: NewsArticle[]
       teamMap: Map<number, Team>

@@ -29,7 +29,7 @@ export function useNews(options?: {
     query,
     transform: (res: { data: Record<string, unknown>[]; meta: Record<string, unknown> }) => ({
       data: snakeToCamelArray<NewsArticle>(res.data),
-      meta: res.meta as NewsMeta,
+      meta: res.meta as unknown as NewsMeta,
     }),
     default: () => ({ data: [], meta: { page: 1, limit: 20, total: null } }),
   })

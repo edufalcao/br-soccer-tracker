@@ -70,7 +70,7 @@ function parseRssItems(xml: string): RssNewsItem[] {
   let match = itemRegex.exec(xml)
 
   while (match !== null) {
-    const itemXml = match[1]
+    const itemXml = match[1] ?? ''
     const title = extractTag(itemXml, 'title')
     const link = extractTag(itemXml, 'link')
     const pubDate = extractTag(itemXml, 'pubDate')
@@ -99,12 +99,12 @@ function extractTag(xml: string, tag: string): string | null {
   // Handle CDATA: <tag><![CDATA[...]]></tag>
   const cdataRegex = new RegExp(`<${tag}[^>]*><!\\[CDATA\\[([\\s\\S]*?)\\]\\]><\\/${tag}>`)
   const cdataMatch = cdataRegex.exec(xml)
-  if (cdataMatch) return cdataMatch[1].trim()
+  if (cdataMatch?.[1]) return cdataMatch[1].trim()
 
   // Handle plain text: <tag>...</tag>
   const plainRegex = new RegExp(`<${tag}[^>]*>([\\s\\S]*?)<\\/${tag}>`)
   const plainMatch = plainRegex.exec(xml)
-  if (plainMatch) return plainMatch[1].trim()
+  if (plainMatch?.[1]) return plainMatch[1].trim()
 
   return null
 }
@@ -112,7 +112,7 @@ function extractTag(xml: string, tag: string): string | null {
 function extractAttribute(xml: string, tag: string, attr: string): string | null {
   const regex = new RegExp(`<${tag}[^>]*\\s${attr}="([^"]*)"`)
   const match = regex.exec(xml)
-  return match ? match[1] : null
+  return match?.[1] ?? null
 }
 
 function decodeHtmlEntities(text: string): string {
