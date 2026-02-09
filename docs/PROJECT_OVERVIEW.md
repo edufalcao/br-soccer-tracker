@@ -61,12 +61,12 @@ External APIs  →  Nitro scheduled tasks  →  Supabase (cache/store)
 - [x] Create shared types and constants
 - [x] Create base layout with header/footer and language switcher
 
-### Phase 2: Data Layer — Server Tasks & API Routes
+### Phase 2: Data Layer — Server Tasks & API Routes ✅
 
-- [ ] Build server utilities (supabase.ts, api-football.ts, news-sources.ts)
-- [ ] Implement Nitro scheduled tasks (news fetch, live sync, fixtures sync, standings sync, teams sync)
-- [ ] Configure cron schedules
-- [ ] Implement server API routes (news, matches, standings, teams)
+- [x] Build server utilities (supabase.ts, api-football.ts, news-sources.ts, competitions.ts)
+- [x] Implement Nitro scheduled tasks (news fetch, live sync, fixtures sync, standings sync, teams sync)
+- [x] Configure cron schedules
+- [x] Implement server API routes (news, matches, standings, teams)
 
 ### Phase 3: Core UI — News, Matches, Standings
 

@@ -36,6 +36,18 @@ export default defineNuxtConfig({
 
   nitro: {
     experimental: { tasks: true },
+    scheduledTasks: {
+      // Teams: once daily at 4 AM UTC
+      '0 4 * * *': ['teams:sync'],
+      // Fixtures: every 6 hours
+      '0 */6 * * *': ['matches:sync-fixtures'],
+      // Standings: every 4 hours
+      '0 */4 * * *': ['matches:sync-standings'],
+      // Live scores: every 5 minutes (smart — skips API calls when no matches are in progress)
+      '*/5 * * * *': ['matches:sync-live'],
+      // News: every 2 hours
+      '30 */2 * * *': ['news:fetch'],
+    },
     preset: 'node-server',
   },
 
