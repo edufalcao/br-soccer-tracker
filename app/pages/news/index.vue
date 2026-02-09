@@ -1,6 +1,11 @@
 <script setup lang="ts">
   const { t } = useI18n()
   useHead({ title: t('news.title') })
+  useSeoMeta({
+    description: t('news.seoDescription'),
+    ogTitle: t('news.title'),
+    ogDescription: t('news.seoDescription'),
+  })
 
   const { teamMap } = useTeams()
   const { selected: selectedCompetition, competitionParam } = useCompetitionFilter()

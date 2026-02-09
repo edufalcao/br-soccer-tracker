@@ -14,7 +14,13 @@
 </script>
 
 <template>
-  <div v-if="!matches.length" class="rounded-lg bg-slate-50 px-4 py-3 text-center text-sm text-slate-500">
+  <div
+    v-if="!matches.length"
+    class="flex items-center justify-center gap-2 rounded-lg border border-pitch-100 bg-pitch-50 px-4 py-3 text-center text-sm text-pitch-700"
+  >
+    <span class="relative flex h-2 w-2">
+      <span class="relative inline-flex h-2 w-2 rounded-full bg-pitch-300" />
+    </span>
     {{ t('home.noLiveMatches') }}
   </div>
   <div v-else class="flex gap-3 overflow-x-auto pb-2">

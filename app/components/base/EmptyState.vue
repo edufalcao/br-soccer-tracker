@@ -11,16 +11,18 @@
 </script>
 
 <template>
-  <div class="flex flex-col items-center justify-center py-12 text-center">
-    <svg class="mb-4 h-12 w-12 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+  <div
+    class="flex flex-col items-center justify-center rounded-lg border border-pitch-100 bg-pitch-50 py-12 text-center"
+  >
+    <!-- Soccer ball icon -->
+    <svg class="mb-4 h-12 w-12 text-pitch-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+      <circle cx="12" cy="12" r="10" />
       <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
+        d="M12 2a10 10 0 0 1 4.5 1.1L12 7l-4.5-3.9A10 10 0 0 1 12 2ZM2.5 9.5 7 8l2 5-3.5 3.5A10 10 0 0 1 2.5 9.5ZM8 20.5l1-4.5h6l1 4.5a10 10 0 0 1-8 0ZM18.5 16.5 15 13l2-5 4.5 1.5a10 10 0 0 1-3 7Z"
       />
     </svg>
-    <p class="text-sm text-slate-500">{{ message }}</p>
-    <BaseButton v-if="actionLabel" :to="actionTo" variant="secondary" size="sm" class="mt-4" @click="emit('action')">
+    <p class="text-sm text-slate-600">{{ message }}</p>
+    <BaseButton v-if="actionLabel" :to="actionTo" variant="primary" size="sm" class="mt-4" @click="emit('action')">
       {{ actionLabel }}
     </BaseButton>
   </div>

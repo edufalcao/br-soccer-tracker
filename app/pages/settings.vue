@@ -3,6 +3,9 @@
 
   const { t, locale, setLocale } = useI18n()
   useHead({ title: t('settings.title') })
+  useSeoMeta({
+    robots: 'noindex, nofollow',
+  })
 
   const user = useSupabaseUser()
   const supabase = useSupabaseClient()

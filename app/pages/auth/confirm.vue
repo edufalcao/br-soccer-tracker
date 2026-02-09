@@ -37,7 +37,7 @@
 </script>
 
 <template>
-  <div class="mx-auto max-w-md py-12">
+  <div class="mx-auto max-w-md py-6 sm:py-12">
     <BaseCard class="p-6 text-center">
       <!-- Confirmed -->
       <template v-if="confirmed">

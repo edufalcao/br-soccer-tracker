@@ -1,6 +1,11 @@
 <script setup lang="ts">
   const { t } = useI18n()
   useHead({ title: t('standings.title') })
+  useSeoMeta({
+    description: t('standings.seoDescription'),
+    ogTitle: t('standings.title'),
+    ogDescription: t('standings.seoDescription'),
+  })
 
   const { teamMap } = useTeams()
 

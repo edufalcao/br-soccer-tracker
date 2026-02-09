@@ -41,7 +41,7 @@
 
 <template>
   <div v-if="pending" class="space-y-3">
-    <div v-for="i in 4" :key="i" class="h-20 animate-pulse rounded-lg bg-slate-100" />
+    <div v-for="i in 4" :key="i" class="h-20 animate-pulse rounded-lg bg-pitch-50" />
   </div>
   <BaseEmptyState v-else-if="!matches.length" :message="emptyMessage || t('matches.noMatches')" />
   <div v-else class="space-y-6">

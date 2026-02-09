@@ -58,7 +58,7 @@
 </script>
 
 <template>
-  <div class="mx-auto max-w-md py-12">
+  <div class="mx-auto max-w-md py-6 sm:py-12">
     <BaseCard class="p-6">
       <h1 class="mb-6 text-center text-2xl font-bold text-pitch-900">{{ t('auth.registerTitle') }}</h1>
 

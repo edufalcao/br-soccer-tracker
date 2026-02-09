@@ -16,7 +16,8 @@
     "latestNews": "Últimas Notícias",
     "liveScores": "Ao Vivo",
     "noLiveMatches": "Nenhum jogo ao vivo no momento",
-    "noFavoriteMatches": "Nenhum jogo programado para seus times"
+    "noFavoriteMatches": "Nenhum jogo programado para seus times",
+    "seoDescription": "Acompanhe o Campeonato Brasileiro ao vivo — notícias, jogos, classificação e mais para Série A, Série B e Copa do Brasil."
   },
   "news": {
     "title": "Notícias",
@@ -24,7 +25,8 @@
     "source": "Fonte",
     "noNews": "Nenhuma notícia encontrada",
     "filterByCompetition": "Filtrar por competição",
-    "filterByTeam": "Filtrar por time"
+    "filterByTeam": "Filtrar por time",
+    "seoDescription": "Notícias atualizadas sobre o futebol brasileiro — Série A, Série B e Copa do Brasil."
   },
   "matches": {
     "title": "Jogos",
@@ -36,7 +38,8 @@
     "fulltime": "Encerrado",
     "scheduled": "Agendado",
     "postponed": "Adiado",
-    "cancelled": "Cancelado"
+    "cancelled": "Cancelado",
+    "seoDescription": "Jogos ao vivo, resultados recentes e próximos confrontos do Brasileirão e Copa do Brasil."
   },
   "standings": {
     "title": "Classificação",
@@ -50,7 +53,8 @@
     "goalsAgainst": "GC",
     "goalDifference": "SG",
     "points": "Pts",
-    "form": "Forma"
+    "form": "Forma",
+    "seoDescription": "Classificação atualizada do Campeonato Brasileiro Série A, Série B e Copa do Brasil."
   },
   "favorites": {
     "title": "Times Favoritos",
@@ -59,7 +63,8 @@
     "selectTeams": "Selecionar times",
     "search": "Buscar time...",
     "teamsSelected": "{count} time selecionado | {count} times selecionados",
-    "clearAll": "Limpar todos"
+    "clearAll": "Limpar todos",
+    "seoDescription": "Selecione seus times favoritos para personalizar sua experiência."
   },
   "auth": {
     "login": "Entrar",

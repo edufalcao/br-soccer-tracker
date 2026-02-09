@@ -37,13 +37,13 @@
 
 <template>
   <div v-if="pending" class="space-y-3 py-4">
-    <div v-for="i in 5" :key="i" class="h-10 animate-pulse rounded bg-slate-100" />
+    <div v-for="i in 5" :key="i" class="h-10 animate-pulse rounded bg-pitch-50" />
   </div>
   <BaseEmptyState v-else-if="!standings.length" :message="t('common.noResults')" />
   <div v-else class="overflow-x-auto">
     <table class="w-full text-left text-sm">
       <thead>
-        <tr class="border-b border-slate-200 text-xs font-medium uppercase text-slate-500">
+        <tr class="border-b border-pitch-100 bg-pitch-50/50 text-xs font-medium uppercase text-pitch-700">
           <th class="px-2 py-2 text-center">{{ t('standings.position') }}</th>
           <th class="px-2 py-2">{{ t('standings.team') }}</th>
           <th class="px-2 py-2 text-center">{{ t('standings.played') }}</th>
@@ -63,7 +63,7 @@
         <tr
           v-for="entry in displayStandings"
           :key="entry.teamExternalId"
-          class="border-b border-slate-100 transition-colors hover:bg-slate-50"
+          class="border-b border-slate-100 transition-colors hover:bg-pitch-50/50"
           :class="[zoneClass(entry.position), favoriteSet.has(entry.teamExternalId) && 'bg-accent/5']"
         >
           <td class="px-2 py-2 text-center text-xs font-medium text-slate-500">{{ entry.position }}</td>
@@ -94,7 +94,7 @@
           <td class="px-2 py-2 text-center">
             {{ entry.goalDifference > 0 ? `+${entry.goalDifference}` : entry.goalDifference }}
           </td>
-          <td class="px-2 py-2 text-center font-bold">{{ entry.points }}</td>
+          <td class="px-2 py-2 text-center font-bold text-pitch-900">{{ entry.points }}</td>
           <td v-if="!compact" class="hidden px-2 py-2 text-center lg:table-cell">
             <StandingsFormIndicator :form="entry.form" />
           </td>

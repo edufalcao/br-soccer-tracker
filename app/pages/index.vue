@@ -1,6 +1,11 @@
 <script setup lang="ts">
   const { t } = useI18n()
   useHead({ title: t('home.title') })
+  useSeoMeta({
+    description: t('home.seoDescription'),
+    ogTitle: t('home.title'),
+    ogDescription: t('home.seoDescription'),
+  })
 
   const { teamMap } = useTeams()
   const { hasFavorites, isFavorite } = useFavoriteTeams()
@@ -59,18 +64,35 @@
 
 <template>
   <div class="space-y-8">
-    <h1 class="text-2xl font-bold text-pitch-900 sm:text-3xl">{{ t('home.title') }}</h1>
+    <!-- Hero Section -->
+    <section class="-mx-4 -mt-6 mb-2 bg-gradient-pitch px-4 py-8 text-white sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+      <div class="mx-auto max-w-3xl text-center">
+        <h1 class="text-3xl font-extrabold tracking-tight sm:text-4xl">
+          <span class="text-accent">{{ t('competitions.serie_a') }}</span>
+          <span class="mx-2 text-pitch-400">&middot;</span>
+          <span>{{ t('competitions.serie_b') }}</span>
+          <span class="mx-2 text-pitch-400">&middot;</span>
+          <span>{{ t('competitions.copa_do_brasil') }}</span>
+        </h1>
+        <p class="mt-2 text-sm text-pitch-200">{{ t('home.seoDescription') }}</p>
+        <div class="mx-auto mt-4 h-0.5 w-24 bg-gradient-accent" />
+      </div>
+    </section>
 
     <!-- Live Scores -->
     <section>
-      <h2 class="mb-3 text-lg font-semibold text-slate-800">{{ t('home.liveScores') }}</h2>
+      <h2 class="mb-3 border-l-4 border-pitch-600 pl-3 text-lg font-semibold text-slate-800">
+        {{ t('home.liveScores') }}
+      </h2>
       <MatchLiveTicker :matches="liveMatches" :team-map="teamMap" />
     </section>
 
     <!-- Your Teams (favorites) -->
     <section v-if="hasFavorites">
       <div class="mb-3 flex items-center justify-between">
-        <h2 class="text-lg font-semibold text-slate-800">{{ t('home.yourTeams') }}</h2>
+        <h2 class="border-l-4 border-pitch-600 pl-3 text-lg font-semibold text-slate-800">
+          {{ t('home.yourTeams') }}
+        </h2>
         <NuxtLink to="/favorites" class="text-sm font-medium text-pitch-700 hover:text-pitch-900">
           {{ t('favorites.selectTeams') }} &rarr;
         </NuxtLink>
@@ -82,7 +104,9 @@
     <!-- Latest News -->
     <section>
       <div class="mb-3 flex items-center justify-between">
-        <h2 class="text-lg font-semibold text-slate-800">{{ t('home.latestNews') }}</h2>
+        <h2 class="border-l-4 border-pitch-600 pl-3 text-lg font-semibold text-slate-800">
+          {{ t('home.latestNews') }}
+        </h2>
         <NuxtLink to="/news" class="text-sm font-medium text-pitch-700 hover:text-pitch-900">
           {{ t('common.seeAll') }} &rarr;
         </NuxtLink>
@@ -96,7 +120,7 @@
     <!-- Standings (Serie A top 5) -->
     <section>
       <div class="mb-3 flex items-center justify-between">
-        <h2 class="text-lg font-semibold text-slate-800">
+        <h2 class="border-l-4 border-pitch-600 pl-3 text-lg font-semibold text-slate-800">
           {{ t('standings.title') }} &mdash; {{ t('competitions.serie_a') }}
         </h2>
         <NuxtLink to="/standings" class="text-sm font-medium text-pitch-700 hover:text-pitch-900">

@@ -8,7 +8,7 @@ export function useTeams() {
     }),
     onResponse({ response }) {
       if (response._data?.data) {
-        teams.value = response._data.data
+        teams.value = snakeToCamelArray<Team>(response._data.data as unknown as Record<string, unknown>[])
       }
     },
     default: () => ({ data: [] }),

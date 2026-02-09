@@ -1,6 +1,12 @@
 <script setup lang="ts">
   const { t } = useI18n()
   useHead({ title: t('favorites.title') })
+  useSeoMeta({
+    description: t('favorites.seoDescription'),
+    ogTitle: t('favorites.title'),
+    ogDescription: t('favorites.seoDescription'),
+    robots: 'noindex, nofollow',
+  })
 
   const { teams, pending } = useTeams()
   const { favoriteTeamIds, toggleFavorite, hasFavorites, clearFavorites } = useFavoriteTeams()

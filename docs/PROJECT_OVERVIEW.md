@@ -98,12 +98,12 @@ External APIs  →  Nitro scheduled tasks  →  Supabase (cache/store)
 - [x] Locale-aware date/time formatting
 - [x] News content fallback strategy
 
-### Phase 7: Mobile-First Design Polish
+### Phase 7: Mobile-First Design Polish ✅
 
-- [ ] Bottom tab navigation on mobile
-- [ ] Responsive layouts (single-column mobile, multi-column desktop)
-- [ ] Skeleton loading states, lazy image loading
-- [ ] SEO (useHead, useSeoMeta per page)
+- [x] Bottom tab navigation on mobile
+- [x] Responsive layouts (single-column mobile, multi-column desktop)
+- [x] Skeleton loading states, lazy image loading
+- [x] SEO (useHead, useSeoMeta per page)
 
 ### Phase 8: Testing & Error Handling
 

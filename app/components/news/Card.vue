@@ -24,12 +24,12 @@
 <template>
   <NuxtLink :to="`/news/${article.id}`" class="group block">
     <BaseCard hoverable :padded="false">
-      <div class="aspect-video w-full overflow-hidden bg-slate-100">
+      <div class="relative aspect-video w-full overflow-hidden bg-slate-100">
         <img
           v-if="article.imageUrl"
           :src="article.imageUrl"
           :alt="title"
-          class="h-full w-full object-cover transition-transform group-hover:scale-105"
+          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
           loading="lazy"
         />
         <div v-else class="flex h-full items-center justify-center text-slate-300">
@@ -41,12 +41,16 @@
             />
           </svg>
         </div>
-      </div>
-      <div class="p-4">
-        <div v-if="article.competition" class="mb-2">
+        <div
+          v-if="article.imageUrl"
+          class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"
+        />
+        <div v-if="article.competition" class="absolute left-2 top-2 z-10">
           <NewsCompetitionBadge :competition="article.competition" />
         </div>
-        <h3 class="mb-1 line-clamp-2 text-sm font-semibold text-slate-900 group-hover:text-pitch-700">
+      </div>
+      <div class="p-4">
+        <h3 class="mb-1 line-clamp-2 text-sm font-semibold text-slate-900 transition-colors group-hover:text-pitch-700">
           {{ title }}
         </h3>
         <p v-if="description" class="mb-2 line-clamp-2 text-xs text-slate-500">{{ description }}</p>

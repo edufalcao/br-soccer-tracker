@@ -5,6 +5,25 @@ export default defineNuxtConfig({
 
   modules: ['@nuxtjs/tailwindcss', '@nuxtjs/supabase', '@nuxtjs/i18n', '@nuxt/eslint'],
 
+  app: {
+    head: {
+      charset: 'utf-8',
+      viewport: 'width=device-width, initial-scale=1, viewport-fit=cover',
+      meta: [
+        {
+          name: 'description',
+          content:
+            'Acompanhe Campeonato Brasileiro Série A, Série B e Copa do Brasil — notícias, jogos ao vivo, classificação e mais.',
+        },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:site_name', content: 'BR Soccer Tracker' },
+        { property: 'og:locale', content: 'pt_BR' },
+        { property: 'og:locale:alternate', content: 'en_US' },
+        { name: 'twitter:card', content: 'summary_large_image' },
+      ],
+    },
+  },
+
   runtimeConfig: {
     apiFootballKey: '',
     gnewsApiKey: '',
@@ -13,6 +32,10 @@ export default defineNuxtConfig({
       supabaseUrl: '',
       supabaseKey: '',
     },
+  },
+
+  tailwindcss: {
+    cssPath: '~/assets/css/main.css',
   },
 
   supabase: {

@@ -16,7 +16,8 @@
     "latestNews": "Latest News",
     "liveScores": "Live Scores",
     "noLiveMatches": "No live matches right now",
-    "noFavoriteMatches": "No upcoming matches for your teams"
+    "noFavoriteMatches": "No upcoming matches for your teams",
+    "seoDescription": "Follow Brazilian soccer live — news, matches, standings and more for Serie A, Serie B and Copa do Brasil."
   },
   "news": {
     "title": "News",
@@ -24,7 +25,8 @@
     "source": "Source",
     "noNews": "No news found",
     "filterByCompetition": "Filter by competition",
-    "filterByTeam": "Filter by team"
+    "filterByTeam": "Filter by team",
+    "seoDescription": "Latest news about Brazilian soccer — Serie A, Serie B and Copa do Brasil."
   },
   "matches": {
     "title": "Matches",
@@ -36,7 +38,8 @@
     "fulltime": "Full-time",
     "scheduled": "Scheduled",
     "postponed": "Postponed",
-    "cancelled": "Cancelled"
+    "cancelled": "Cancelled",
+    "seoDescription": "Live matches, recent results and upcoming fixtures from Brazilian Serie A, Serie B and Copa do Brasil."
   },
   "standings": {
     "title": "Standings",
@@ -50,7 +53,8 @@
     "goalsAgainst": "GA",
     "goalDifference": "GD",
     "points": "Pts",
-    "form": "Form"
+    "form": "Form",
+    "seoDescription": "Live standings for Brazilian Serie A, Serie B and Copa do Brasil."
   },
   "favorites": {
     "title": "Favorite Teams",
@@ -59,7 +63,8 @@
     "selectTeams": "Select teams",
     "search": "Search team...",
     "teamsSelected": "{count} team selected | {count} teams selected",
-    "clearAll": "Clear all"
+    "clearAll": "Clear all",
+    "seoDescription": "Select your favorite teams to personalize your experience."
   },
   "auth": {
     "login": "Login",

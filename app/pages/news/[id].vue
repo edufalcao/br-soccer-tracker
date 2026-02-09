@@ -38,6 +38,13 @@
   })
 
   useHead({ title: title.value || t('news.title') })
+  useSeoMeta({
+    description: description.value.slice(0, 160),
+    ogTitle: title.value,
+    ogDescription: description.value.slice(0, 160),
+    ogImage: article.value?.imageUrl ?? '',
+    ogType: 'article',
+  })
 </script>
 
 <template>
@@ -57,6 +64,7 @@
         :src="article.imageUrl"
         :alt="title"
         class="mb-6 aspect-video w-full rounded-lg object-cover"
+        loading="lazy"
       />
 
       <h1 class="mb-3 text-2xl font-bold text-slate-900 sm:text-3xl">{{ title }}</h1>

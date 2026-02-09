@@ -32,11 +32,11 @@
   <!-- Loading skeleton -->
   <div v-if="pending" class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
     <div v-for="i in 6" :key="i" class="overflow-hidden rounded-lg bg-white shadow-sm ring-1 ring-slate-200">
-      <div class="aspect-video animate-pulse bg-slate-100" />
+      <div class="aspect-video animate-pulse bg-pitch-50" />
       <div class="space-y-2 p-4">
-        <div class="h-4 w-3/4 animate-pulse rounded bg-slate-100" />
-        <div class="h-3 w-full animate-pulse rounded bg-slate-100" />
-        <div class="h-3 w-1/2 animate-pulse rounded bg-slate-100" />
+        <div class="h-4 w-3/4 animate-pulse rounded bg-pitch-50" />
+        <div class="h-3 w-full animate-pulse rounded bg-pitch-50" />
+        <div class="h-3 w-1/2 animate-pulse rounded bg-pitch-50" />
       </div>
     </div>
   </div>
