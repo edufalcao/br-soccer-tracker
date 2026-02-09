@@ -14,7 +14,8 @@
     "title": "BR Soccer Tracker",
     "yourTeams": "Your Teams",
     "latestNews": "Latest News",
-    "liveScores": "Live Scores"
+    "liveScores": "Live Scores",
+    "noLiveMatches": "No live matches right now"
   },
   "news": {
     "title": "News",
@@ -33,7 +34,8 @@
     "halftime": "Half-time",
     "fulltime": "Full-time",
     "scheduled": "Scheduled",
-    "postponed": "Postponed"
+    "postponed": "Postponed",
+    "cancelled": "Cancelled"
   },
   "standings": {
     "title": "Standings",
@@ -87,6 +89,12 @@
     "cancel": "Cancel",
     "back": "Back",
     "seeAll": "See all",
-    "noResults": "No results found"
+    "noResults": "No results found",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "tomorrow": "Tomorrow",
+    "page": "Page {current} of {total}",
+    "previous": "Previous",
+    "next": "Next"
   }
 }

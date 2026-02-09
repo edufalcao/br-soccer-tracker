@@ -14,7 +14,8 @@
     "title": "BR Soccer Tracker",
     "yourTeams": "Seus Times",
     "latestNews": "Últimas Notícias",
-    "liveScores": "Ao Vivo"
+    "liveScores": "Ao Vivo",
+    "noLiveMatches": "Nenhum jogo ao vivo no momento"
   },
   "news": {
     "title": "Notícias",
@@ -33,7 +34,8 @@
     "halftime": "Intervalo",
     "fulltime": "Encerrado",
     "scheduled": "Agendado",
-    "postponed": "Adiado"
+    "postponed": "Adiado",
+    "cancelled": "Cancelado"
   },
   "standings": {
     "title": "Classificação",
@@ -87,6 +89,12 @@
     "cancel": "Cancelar",
     "back": "Voltar",
     "seeAll": "Ver tudo",
-    "noResults": "Nenhum resultado encontrado"
+    "noResults": "Nenhum resultado encontrado",
+    "today": "Hoje",
+    "yesterday": "Ontem",
+    "tomorrow": "Amanhã",
+    "page": "Página {current} de {total}",
+    "previous": "Anterior",
+    "next": "Próximo"
   }
 }

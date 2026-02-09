@@ -1,0 +1,30 @@
+<script setup lang="ts">
+  const props = defineProps<{
+    form: string | null
+  }>()
+
+  const results = computed(() => {
+    if (!props.form) return []
+    return props.form
+      .slice(-5)
+      .split('')
+      .map((c) => {
+        if (c === 'W') return { char: c, color: 'bg-green-500' }
+        if (c === 'D') return { char: c, color: 'bg-yellow-500' }
+        if (c === 'L') return { char: c, color: 'bg-red-500' }
+        return { char: c, color: 'bg-slate-300' }
+      })
+  })
+</script>
+
+<template>
+  <div v-if="results.length" class="flex gap-1">
+    <span
+      v-for="(r, i) in results"
+      :key="i"
+      :class="r.color"
+      class="inline-block h-2 w-2 rounded-full"
+      :title="r.char"
+    />
+  </div>
+</template>

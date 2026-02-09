@@ -68,13 +68,13 @@ External APIs  →  Nitro scheduled tasks  →  Supabase (cache/store)
 - [x] Configure cron schedules
 - [x] Implement server API routes (news, matches, standings, teams)
 
-### Phase 3: Core UI — News, Matches, Standings
+### Phase 3: Core UI — News, Matches, Standings ✅
 
-- [ ] Build UI primitives (BaseButton, BaseCard, BaseTabs, etc.)
-- [ ] Home page (live scores ticker + news feed)
-- [ ] News page (filterable list + detail page)
-- [ ] Matches page (Live / Recent / Upcoming tabs)
-- [ ] Standings page (competition tabs + responsive table)
+- [x] Build UI primitives (BaseButton, BaseCard, BaseTabs, etc.)
+- [x] Home page (live scores ticker + news feed)
+- [x] News page (filterable list + detail page)
+- [x] Matches page (Live / Recent / Upcoming tabs)
+- [x] Standings page (competition tabs + responsive table)
 
 ### Phase 4: Favorite Teams
 
