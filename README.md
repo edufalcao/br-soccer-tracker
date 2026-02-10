@@ -1,5 +1,7 @@
 # BR Soccer Tracker
 
+[![CI](https://github.com/<owner>/br-soccer-tracker/actions/workflows/ci.yml/badge.svg)](https://github.com/<owner>/br-soccer-tracker/actions/workflows/ci.yml)
+
 Bilingual (PT-BR / English) website to track Brazilian soccer — Campeonato Brasileiro Série A, Série B, and Copa do Brasil.
 
 Live scores, match results, league standings, and news — all in one place.
@@ -165,6 +167,10 @@ Response includes:
 - **supabase**: database connectivity
 - **apiFootball / gnews**: remaining daily API calls and health
 - **uptime**: server uptime in seconds
+
+## Deployment
+
+See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) for full deployment guide including Docker, CI/CD, and production checklist.
 
 ## License
 

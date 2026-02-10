@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [main]
 
+env:
+  NODE_VERSION: 24
+
 jobs:
   quality:
     name: Code Quality
@@ -16,7 +19,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 24
+          node-version: ${{ env.NODE_VERSION }}
           cache: npm
 
       - run: npm ci
@@ -31,3 +34,72 @@ jobs:
 
       - name: Type check
         run: npx vue-tsc --noEmit
+
+  test:
+    name: Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - run: npm ci
+
+      - run: npx nuxt prepare
+
+      - name: Run tests
+        run: npm test
+
+  build:
+    name: Build Validation
+    runs-on: ubuntu-latest
+    needs: [quality, test]
+
+    env:
+      SUPABASE_URL: http://localhost:54321
+      SUPABASE_KEY: dummy-anon-key-for-ci-build
+      NUXT_SUPABASE_SERVICE_ROLE_KEY: dummy-service-role-key-for-ci-build
+      NUXT_API_FOOTBALL_KEY: dummy-key
+      NUXT_GNEWS_API_KEY: dummy-key
+      NUXT_FOOTBALL_DATA_KEY: dummy-key
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build
+        run: npm run build
+
+  docker:
+    name: Docker Build
+    runs-on: ubuntu-latest
+    needs: [quality, test]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          target: runtime
+          push: false
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          build-args: |
+            SUPABASE_URL=http://localhost:54321
+            SUPABASE_KEY=dummy-anon-key-for-ci-build
+            NUXT_SUPABASE_SERVICE_ROLE_KEY=dummy-service-role-key-for-ci-build
