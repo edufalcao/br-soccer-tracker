@@ -13,7 +13,11 @@
   const { hasFavorites, isFavorite } = useFavoriteTeams()
 
   // Live matches
-  const { data: liveData, refresh: refreshLive } = useFetch('/api/matches/live', {
+  const {
+    data: liveData,
+    error: liveError,
+    refresh: refreshLive,
+  } = useFetch('/api/matches/live', {
     transform: (res: { data: Record<string, unknown>[] }) => ({
       data: snakeToCamelArray<Match>(res.data),
     }),
@@ -22,7 +26,7 @@
   const liveMatches = computed(() => liveData.value?.data ?? [])
 
   // Latest news (6 articles)
-  const { data: newsData } = useFetch('/api/news', {
+  const { data: newsData, error: newsError } = useFetch('/api/news', {
     query: { limit: 6 },
     transform: (res: { data: Record<string, unknown>[] }) => ({
       data: snakeToCamelArray<NewsArticle>(res.data),
@@ -90,7 +94,8 @@
         <h2 class="section-header mt-1">{{ t('home.liveScores') }}</h2>
         <div class="mt-1 h-[2px] w-12 bg-accent" />
       </div>
-      <MatchLiveTicker :matches="liveMatches" :team-map="teamMap" />
+      <BaseErrorState v-if="liveError" @retry="refreshLive" />
+      <MatchLiveTicker v-else :matches="liveMatches" :team-map="teamMap" />
     </section>
 
     <!-- Your Teams (favorites) -->
@@ -121,8 +126,11 @@
           {{ t('common.seeAll') }} &rarr;
         </NuxtLink>
       </div>
-      <NewsList :articles="latestNews" :team-map="teamMap" featured />
-      <BaseEmptyState v-if="!latestNews.length" :message="t('news.noNews')" />
+      <BaseErrorState v-if="newsError" @retry="() => $router.go(0)" />
+      <template v-else>
+        <NewsList :articles="latestNews" :team-map="teamMap" featured />
+        <BaseEmptyState v-if="!latestNews.length" :message="t('news.noNews')" />
+      </template>
     </section>
 
     <!-- Standings (Serie A top 5) -->

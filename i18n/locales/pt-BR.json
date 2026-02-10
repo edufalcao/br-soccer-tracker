@@ -127,5 +127,12 @@
     "page": "Página {current} de {total}",
     "previous": "Anterior",
     "next": "Próximo"
+  },
+  "errorPage": {
+    "title404": "Página não encontrada",
+    "message404": "A página que você procura não existe ou foi movida.",
+    "title500": "Algo deu errado",
+    "message500": "Ocorreu um erro inesperado. Tente novamente mais tarde.",
+    "backHome": "Voltar ao início"
   }
 }
