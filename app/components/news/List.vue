@@ -7,12 +7,14 @@
       total?: number | null
       page?: number
       limit?: number
+      featured?: boolean
     }>(),
     {
       pending: false,
       total: null,
       page: 1,
       limit: 20,
+      featured: false,
     },
   )
 
@@ -31,7 +33,11 @@
 <template>
   <!-- Loading skeleton -->
   <div v-if="pending" class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-    <div v-for="i in 6" :key="i" class="overflow-hidden rounded-lg bg-white shadow-sm ring-1 ring-slate-200">
+    <div
+      v-for="i in 6"
+      :key="i"
+      class="overflow-hidden rounded-xl bg-gradient-card shadow-card ring-1 ring-pitch-100/50"
+    >
       <div class="aspect-video animate-pulse bg-pitch-50" />
       <div class="space-y-2 p-4">
         <div class="h-4 w-3/4 animate-pulse rounded bg-pitch-50" />
@@ -47,15 +53,25 @@
   <!-- Article grid -->
   <div v-else>
     <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-      <NewsCard v-for="article in articles" :key="article.id" :article="article" :team-map="teamMap" />
+      <NewsCard
+        v-for="(article, index) in articles"
+        :key="article.id"
+        :article="article"
+        :team-map="teamMap"
+        :class="[
+          'animate-fade-in',
+          `stagger-${(index % 8) + 1}`,
+          featured && index === 0 && 'lg:col-span-2 lg:row-span-2',
+        ]"
+      />
     </div>
 
     <!-- Pagination -->
-    <div v-if="totalPages > 1" class="mt-6 flex items-center justify-center gap-4">
+    <div v-if="totalPages > 1" class="mt-8 flex items-center justify-center gap-4">
       <BaseButton variant="secondary" size="sm" :disabled="page <= 1" @click="emit('pageChange', page - 1)">
         {{ t('common.previous') }}
       </BaseButton>
-      <span class="text-sm text-slate-500">
+      <span class="section-label">
         {{ t('common.page', { current: page, total: totalPages }) }}
       </span>
       <BaseButton variant="secondary" size="sm" :disabled="page >= totalPages" @click="emit('pageChange', page + 1)">

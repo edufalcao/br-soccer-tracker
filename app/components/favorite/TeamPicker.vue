@@ -46,10 +46,10 @@
         v-model="search"
         type="text"
         :placeholder="t('favorites.search')"
-        class="w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 pl-10 text-sm outline-none transition-colors focus:border-pitch-500 focus:ring-2 focus:ring-pitch-500/20"
+        class="w-full rounded-lg bg-pitch-50/30 px-4 py-2.5 pl-10 text-sm outline-none ring-1 ring-pitch-100 transition-all focus:bg-white focus:ring-2 focus:ring-pitch-500"
       />
       <svg
-        class="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400"
+        class="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-pitch-400"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
         fill="currentColor"
@@ -64,19 +64,20 @@
 
     <!-- Grouped teams -->
     <div v-for="group in filteredGroups" :key="group.competition" class="space-y-3">
-      <h3 class="text-sm font-semibold uppercase tracking-wide text-slate-500">
+      <h3 class="section-label">
         {{ t(`competitions.${group.competition}`) }}
       </h3>
       <div class="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4">
         <button
-          v-for="team in group.teams"
+          v-for="(team, index) in group.teams"
           :key="team.externalId"
-          class="flex items-center gap-2.5 rounded-lg border p-3 text-left transition-all"
-          :class="
+          class="flex items-center gap-2.5 rounded-lg p-3 text-left transition-all animate-fade-in"
+          :class="[
             favoriteSet.has(team.externalId)
-              ? 'border-2 border-accent bg-accent/10'
-              : 'border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50'
-          "
+              ? 'ring-2 ring-accent bg-accent/10 shadow-sm'
+              : 'ring-1 ring-pitch-100 bg-white hover:ring-pitch-200 hover:bg-pitch-50/50',
+            `stagger-${(index % 8) + 1}`,
+          ]"
           @click="emit('toggle', team.externalId)"
         >
           <TeamBadge :team="team" size="sm" />
@@ -87,7 +88,7 @@
     </div>
 
     <!-- No results -->
-    <p v-if="!filteredGroups.length && search" class="text-center text-sm text-slate-500">
+    <p v-if="!filteredGroups.length && search" class="text-center text-sm text-pitch-500">
       {{ t('common.noResults') }}
     </p>
   </div>

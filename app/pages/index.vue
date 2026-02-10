@@ -7,6 +7,8 @@
     ogDescription: t('home.seoDescription'),
   })
 
+  useScrollReveal()
+
   const { teamMap } = useTeams()
   const { hasFavorites, isFavorite } = useFavoriteTeams()
 
@@ -63,37 +65,43 @@
 </script>
 
 <template>
-  <div class="space-y-8">
+  <div class="space-y-10">
     <!-- Hero Section -->
-    <section class="-mx-4 -mt-6 mb-2 bg-gradient-pitch px-4 py-8 text-white sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-      <div class="mx-auto max-w-3xl text-center">
-        <h1 class="text-3xl font-extrabold tracking-tight sm:text-4xl">
+    <section
+      class="-mx-4 -mt-6 mb-2 bg-gradient-editorial texture-noise pitch-lines px-4 py-12 text-white sm:-mx-6 sm:px-6 sm:py-16 lg:-mx-8 lg:px-8 lg:py-20"
+    >
+      <div class="relative z-10 mx-auto max-w-3xl text-center">
+        <h1 class="font-display text-4xl tracking-tight sm:text-5xl lg:text-6xl">
           <span class="text-accent">{{ t('competitions.serie_a') }}</span>
-          <span class="mx-2 text-pitch-400">&middot;</span>
+          <span class="mx-2 text-pitch-400/60">&middot;</span>
           <span>{{ t('competitions.serie_b') }}</span>
-          <span class="mx-2 text-pitch-400">&middot;</span>
+          <span class="mx-2 text-pitch-400/60">&middot;</span>
           <span>{{ t('competitions.copa_do_brasil') }}</span>
         </h1>
-        <p class="mt-2 text-sm text-pitch-200">{{ t('home.seoDescription') }}</p>
-        <div class="mx-auto mt-4 h-0.5 w-24 bg-gradient-accent" />
+        <p class="mt-3 text-sm text-pitch-200">{{ t('home.seoDescription') }}</p>
+        <div class="mx-auto mt-5 h-[2px] w-24 bg-gradient-accent" />
       </div>
     </section>
 
     <!-- Live Scores -->
     <section>
-      <h2 class="mb-3 border-l-4 border-pitch-600 pl-3 text-lg font-semibold text-slate-800">
-        {{ t('home.liveScores') }}
-      </h2>
+      <div class="mb-4">
+        <span class="section-label">{{ t('home.liveScores') }}</span>
+        <h2 class="section-header mt-1">{{ t('home.liveScores') }}</h2>
+        <div class="mt-1 h-[2px] w-12 bg-accent" />
+      </div>
       <MatchLiveTicker :matches="liveMatches" :team-map="teamMap" />
     </section>
 
     <!-- Your Teams (favorites) -->
-    <section v-if="hasFavorites">
-      <div class="mb-3 flex items-center justify-between">
-        <h2 class="border-l-4 border-pitch-600 pl-3 text-lg font-semibold text-slate-800">
-          {{ t('home.yourTeams') }}
-        </h2>
-        <NuxtLink to="/favorites" class="text-sm font-medium text-pitch-700 hover:text-pitch-900">
+    <section v-if="hasFavorites" class="reveal">
+      <div class="mb-4 flex items-center justify-between">
+        <div>
+          <span class="section-label">{{ t('home.yourTeams') }}</span>
+          <h2 class="section-header mt-1">{{ t('home.yourTeams') }}</h2>
+          <div class="mt-1 h-[2px] w-12 bg-accent" />
+        </div>
+        <NuxtLink to="/favorites" class="text-sm font-semibold text-pitch-700 hover:text-pitch-900">
           {{ t('favorites.selectTeams') }} &rarr;
         </NuxtLink>
       </div>
@@ -102,32 +110,34 @@
     </section>
 
     <!-- Latest News -->
-    <section>
-      <div class="mb-3 flex items-center justify-between">
-        <h2 class="border-l-4 border-pitch-600 pl-3 text-lg font-semibold text-slate-800">
-          {{ t('home.latestNews') }}
-        </h2>
-        <NuxtLink to="/news" class="text-sm font-medium text-pitch-700 hover:text-pitch-900">
+    <section class="reveal">
+      <div class="mb-4 flex items-center justify-between">
+        <div>
+          <span class="section-label">{{ t('home.latestNews') }}</span>
+          <h2 class="section-header mt-1">{{ t('home.latestNews') }}</h2>
+          <div class="mt-1 h-[2px] w-12 bg-accent" />
+        </div>
+        <NuxtLink to="/news" class="text-sm font-semibold text-pitch-700 hover:text-pitch-900">
           {{ t('common.seeAll') }} &rarr;
         </NuxtLink>
       </div>
-      <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-        <NewsCard v-for="article in latestNews" :key="article.id" :article="article" :team-map="teamMap" />
-      </div>
+      <NewsList :articles="latestNews" :team-map="teamMap" featured />
       <BaseEmptyState v-if="!latestNews.length" :message="t('news.noNews')" />
     </section>
 
     <!-- Standings (Serie A top 5) -->
-    <section>
-      <div class="mb-3 flex items-center justify-between">
-        <h2 class="border-l-4 border-pitch-600 pl-3 text-lg font-semibold text-slate-800">
-          {{ t('standings.title') }} &mdash; {{ t('competitions.serie_a') }}
-        </h2>
-        <NuxtLink to="/standings" class="text-sm font-medium text-pitch-700 hover:text-pitch-900">
+    <section class="reveal">
+      <div class="mb-4 flex items-center justify-between">
+        <div>
+          <span class="section-label">{{ t('standings.title') }}</span>
+          <h2 class="section-header mt-1">{{ t('competitions.serie_a') }}</h2>
+          <div class="mt-1 h-[2px] w-12 bg-accent" />
+        </div>
+        <NuxtLink to="/standings" class="text-sm font-semibold text-pitch-700 hover:text-pitch-900">
           {{ t('common.seeAll') }} &rarr;
         </NuxtLink>
       </div>
-      <BaseCard>
+      <BaseCard editorial>
         <StandingsTable :standings="standings" :team-map="teamMap" compact />
       </BaseCard>
     </section>

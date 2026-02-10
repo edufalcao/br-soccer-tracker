@@ -24,8 +24,12 @@
 </script>
 
 <template>
-  <div>
-    <h1 class="mb-6 text-2xl font-bold text-pitch-900 sm:text-3xl">{{ t('matches.title') }}</h1>
+  <div class="animate-fade-in">
+    <div class="mb-6">
+      <span class="section-label">{{ t('nav.matches') }}</span>
+      <h1 class="section-header mt-1">{{ t('matches.title') }}</h1>
+      <div class="mt-1 h-[2px] w-12 bg-accent" />
+    </div>
     <CompetitionFilterBar v-model="selectedCompetition" />
     <BaseTabs v-model="activeTab" :items="tabItems" />
 

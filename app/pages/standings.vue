@@ -21,10 +21,18 @@
 </script>
 
 <template>
-  <div>
-    <h1 class="mb-6 text-2xl font-bold text-pitch-900 sm:text-3xl">{{ t('standings.title') }}</h1>
+  <div class="animate-fade-in">
+    <div class="mb-6">
+      <span class="section-label">{{ t('nav.standings') }}</span>
+      <h1 class="section-header mt-1">{{ t('standings.title') }}</h1>
+      <div class="mt-1 h-[2px] w-12 bg-accent" />
+    </div>
     <BaseTabs v-model="activeCompetition" :items="competitionTabs" />
-    <BaseErrorState v-if="error" @retry="() => $router.go(0)" />
-    <StandingsTable v-else :standings="standings" :team-map="teamMap" :pending="pending" />
+    <div class="pitch-sideline">
+      <BaseErrorState v-if="error" @retry="() => $router.go(0)" />
+      <BaseCard v-else editorial>
+        <StandingsTable :standings="standings" :team-map="teamMap" :pending="pending" />
+      </BaseCard>
+    </div>
   </div>
 </template>

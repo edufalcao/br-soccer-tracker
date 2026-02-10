@@ -11,7 +11,7 @@
 </script>
 
 <template>
-  <div class="flex flex-col items-center justify-center py-12 text-center">
+  <div class="animate-fade-in flex flex-col items-center justify-center py-12 text-center">
     <svg class="mb-4 h-12 w-12 text-red-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
       <path
         stroke-linecap="round"

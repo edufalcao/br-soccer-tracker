@@ -23,8 +23,8 @@
 
 <template>
   <NuxtLink :to="`/news/${article.id}`" class="group block">
-    <BaseCard hoverable :padded="false">
-      <div class="relative aspect-video w-full overflow-hidden bg-slate-100">
+    <BaseCard hoverable :padded="false" editorial>
+      <div class="relative aspect-video w-full overflow-hidden bg-pitch-50">
         <img
           v-if="article.imageUrl"
           :src="article.imageUrl"
@@ -32,7 +32,7 @@
           class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
           loading="lazy"
         />
-        <div v-else class="flex h-full items-center justify-center text-slate-300">
+        <div v-else class="flex h-full items-center justify-center text-pitch-300">
           <svg class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
             <path
               stroke-linecap="round"
@@ -43,18 +43,20 @@
         </div>
         <div
           v-if="article.imageUrl"
-          class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"
+          class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent"
         />
         <div v-if="article.competition" class="absolute left-2 top-2 z-10">
           <NewsCompetitionBadge :competition="article.competition" />
         </div>
       </div>
       <div class="p-4">
-        <h3 class="mb-1 line-clamp-2 text-sm font-semibold text-slate-900 transition-colors group-hover:text-pitch-700">
+        <h3
+          class="mb-1 line-clamp-2 font-display text-base text-pitch-950 transition-colors group-hover:text-pitch-800"
+        >
           {{ title }}
         </h3>
-        <p v-if="description" class="mb-2 line-clamp-2 text-xs text-slate-500">{{ description }}</p>
-        <div class="flex items-center gap-2 text-xs text-slate-400">
+        <p v-if="description" class="mb-2 line-clamp-2 text-xs text-pitch-500">{{ description }}</p>
+        <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider text-pitch-400">
           <span>{{ article.sourceName }}</span>
           <span>&middot;</span>
           <time>{{ formattedDate }}</time>

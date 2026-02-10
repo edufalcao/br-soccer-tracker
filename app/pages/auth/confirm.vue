@@ -38,21 +38,21 @@
 
 <template>
   <div class="mx-auto max-w-md py-6 sm:py-12">
-    <BaseCard class="p-6 text-center">
+    <BaseCard class="animate-fade-in p-6 text-center">
       <!-- Confirmed -->
       <template v-if="confirmed">
         <div class="mb-4 text-4xl">&#10003;</div>
-        <h1 class="mb-2 text-xl font-bold text-pitch-900">{{ t('auth.emailConfirmed') }}</h1>
-        <p class="text-sm text-slate-500">{{ t('auth.redirecting') }}</p>
+        <h1 class="mb-2 font-display text-xl tracking-tight text-pitch-950">{{ t('auth.emailConfirmed') }}</h1>
+        <p class="text-sm text-pitch-500">{{ t('auth.redirecting') }}</p>
       </template>
 
       <!-- Error / expired token -->
       <template v-else-if="error">
-        <h1 class="mb-4 text-xl font-bold text-pitch-900">{{ t('common.error') }}</h1>
-        <p class="mb-4 text-sm text-slate-600">{{ t('auth.invalidToken') }}</p>
+        <h1 class="mb-4 font-display text-xl tracking-tight text-pitch-950">{{ t('common.error') }}</h1>
+        <p class="mb-4 text-sm text-pitch-600">{{ t('auth.invalidToken') }}</p>
         <NuxtLink
           to="/auth/login"
-          class="inline-block rounded-md bg-pitch-700 px-4 py-2 text-sm font-medium text-white hover:bg-pitch-800"
+          class="inline-block rounded-lg bg-pitch-800 px-4 py-2 text-sm font-semibold tracking-wide text-white shadow-sm shadow-pitch-900/20 hover:bg-pitch-900"
         >
           {{ t('auth.login') }}
         </NuxtLink>
@@ -60,8 +60,8 @@
 
       <!-- Loading -->
       <template v-else>
-        <div class="mb-4 h-8 w-8 mx-auto animate-spin rounded-full border-4 border-pitch-200 border-t-pitch-700" />
-        <h1 class="text-xl font-bold text-pitch-900">{{ t('auth.confirmingAccount') }}</h1>
+        <div class="mb-4 mx-auto h-8 w-8 animate-spin rounded-full border-4 border-pitch-200 border-t-pitch-700" />
+        <h1 class="font-display text-xl tracking-tight text-pitch-950">{{ t('auth.confirmingAccount') }}</h1>
       </template>
     </BaseCard>
   </div>

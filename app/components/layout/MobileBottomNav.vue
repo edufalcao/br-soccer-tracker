@@ -11,15 +11,14 @@
 </script>
 
 <template>
-  <nav
-    class="fixed inset-x-0 bottom-0 z-40 border-t border-pitch-800 bg-pitch-900 pb-[env(safe-area-inset-bottom)] md:hidden"
-  >
-    <div class="grid grid-cols-5">
+  <nav class="fixed inset-x-0 bottom-0 z-40 pb-[env(safe-area-inset-bottom)] md:hidden">
+    <div class="h-[2px] bg-gradient-accent" />
+    <div class="grid grid-cols-5 bg-pitch-950">
       <NuxtLink
         v-for="item in navItems"
         :key="item.to"
         :to="item.to"
-        class="flex flex-col items-center justify-center gap-0.5 py-2 text-pitch-300 transition-colors"
+        class="group flex flex-col items-center justify-center gap-0.5 py-2 text-pitch-300 transition-colors"
         active-class="!text-accent"
       >
         <!-- Home -->
@@ -102,7 +101,11 @@
           />
         </svg>
 
-        <span class="text-[10px] font-medium leading-tight">{{ item.label }}</span>
+        <span class="text-[10px] font-semibold leading-tight tracking-wide">{{ item.label }}</span>
+        <!-- Active dot indicator -->
+        <span
+          class="h-1 w-1 rounded-full bg-accent opacity-0 transition-opacity group-[.router-link-active]:opacity-100"
+        />
       </NuxtLink>
     </div>
   </nav>

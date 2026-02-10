@@ -30,13 +30,13 @@
     :src="team.badgeUrl"
     :alt="displayName"
     :class="sizeClasses[size]"
-    class="object-contain"
+    class="object-contain ring-1 ring-pitch-100/50 rounded-full"
     loading="lazy"
   />
   <div
     v-else
     :class="[sizeClasses[size], textSizeClasses[size]]"
-    class="flex items-center justify-center rounded-full bg-pitch-100 font-bold text-pitch-800"
+    class="flex items-center justify-center rounded-full bg-pitch-100 font-display font-bold text-pitch-800 ring-1 ring-pitch-100/50"
   >
     {{ displayName.charAt(0) }}
   </div>

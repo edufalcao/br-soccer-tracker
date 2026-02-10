@@ -23,13 +23,13 @@
   function zoneClass(position: number): string {
     if (!competition.value || competition.value === 'copa_do_brasil') return ''
     if (competition.value === 'serie_a') {
-      if (position <= 4) return 'border-l-4 border-l-green-500'
-      if (position <= 6) return 'border-l-4 border-l-blue-500'
-      if (position >= 17) return 'border-l-4 border-l-red-500'
+      if (position <= 4) return 'border-l-4 border-l-green-500 bg-green-50/30'
+      if (position <= 6) return 'border-l-4 border-l-blue-500 bg-blue-50/30'
+      if (position >= 17) return 'border-l-4 border-l-red-500 bg-red-50/30'
     }
     if (competition.value === 'serie_b') {
-      if (position <= 4) return 'border-l-4 border-l-green-500'
-      if (position >= 17) return 'border-l-4 border-l-red-500'
+      if (position <= 4) return 'border-l-4 border-l-green-500 bg-green-50/30'
+      if (position >= 17) return 'border-l-4 border-l-red-500 bg-red-50/30'
     }
     return ''
   }
@@ -43,30 +43,34 @@
   <div v-else class="overflow-x-auto">
     <table class="w-full text-left text-sm">
       <thead>
-        <tr class="border-b border-pitch-100 bg-pitch-50/50 text-xs font-medium uppercase text-pitch-700">
-          <th class="px-2 py-2 text-center">{{ t('standings.position') }}</th>
-          <th class="px-2 py-2">{{ t('standings.team') }}</th>
-          <th class="px-2 py-2 text-center">{{ t('standings.played') }}</th>
+        <tr class="bg-pitch-900 text-[11px] font-bold uppercase tracking-wider text-pitch-100">
+          <th class="px-2 py-2.5 text-center">{{ t('standings.position') }}</th>
+          <th class="px-2 py-2.5">{{ t('standings.team') }}</th>
+          <th class="px-2 py-2.5 text-center">{{ t('standings.played') }}</th>
           <template v-if="!compact">
-            <th class="hidden px-2 py-2 text-center md:table-cell">{{ t('standings.won') }}</th>
-            <th class="hidden px-2 py-2 text-center md:table-cell">{{ t('standings.drawn') }}</th>
-            <th class="hidden px-2 py-2 text-center md:table-cell">{{ t('standings.lost') }}</th>
-            <th class="hidden px-2 py-2 text-center md:table-cell">{{ t('standings.goalsFor') }}</th>
-            <th class="hidden px-2 py-2 text-center md:table-cell">{{ t('standings.goalsAgainst') }}</th>
+            <th class="hidden px-2 py-2.5 text-center md:table-cell">{{ t('standings.won') }}</th>
+            <th class="hidden px-2 py-2.5 text-center md:table-cell">{{ t('standings.drawn') }}</th>
+            <th class="hidden px-2 py-2.5 text-center md:table-cell">{{ t('standings.lost') }}</th>
+            <th class="hidden px-2 py-2.5 text-center md:table-cell">{{ t('standings.goalsFor') }}</th>
+            <th class="hidden px-2 py-2.5 text-center md:table-cell">{{ t('standings.goalsAgainst') }}</th>
           </template>
-          <th class="px-2 py-2 text-center">{{ t('standings.goalDifference') }}</th>
-          <th class="px-2 py-2 text-center font-bold">{{ t('standings.points') }}</th>
-          <th v-if="!compact" class="hidden px-2 py-2 text-center lg:table-cell">{{ t('standings.form') }}</th>
+          <th class="px-2 py-2.5 text-center">{{ t('standings.goalDifference') }}</th>
+          <th class="px-2 py-2.5 text-center">{{ t('standings.points') }}</th>
+          <th v-if="!compact" class="hidden px-2 py-2.5 text-center lg:table-cell">{{ t('standings.form') }}</th>
         </tr>
       </thead>
       <tbody>
         <tr
-          v-for="entry in displayStandings"
+          v-for="(entry, index) in displayStandings"
           :key="entry.teamExternalId"
-          class="border-b border-slate-100 transition-colors hover:bg-pitch-50/50"
-          :class="[zoneClass(entry.position), favoriteSet.has(entry.teamExternalId) && 'bg-accent/5']"
+          class="border-b border-pitch-100 transition-colors hover:bg-pitch-50/50 animate-fade-in"
+          :class="[
+            zoneClass(entry.position),
+            favoriteSet.has(entry.teamExternalId) && 'bg-accent/5',
+            `stagger-${(index % 8) + 1}`,
+          ]"
         >
-          <td class="px-2 py-2 text-center text-xs font-medium text-slate-500">{{ entry.position }}</td>
+          <td class="px-2 py-2 text-center font-display font-bold text-pitch-600">{{ entry.position }}</td>
           <td class="px-2 py-2">
             <div class="flex items-center gap-2">
               <FavoriteStarIcon v-if="favoriteSet.has(entry.teamExternalId)" size="xs" />
@@ -94,7 +98,7 @@
           <td class="px-2 py-2 text-center">
             {{ entry.goalDifference > 0 ? `+${entry.goalDifference}` : entry.goalDifference }}
           </td>
-          <td class="px-2 py-2 text-center font-bold text-pitch-900">{{ entry.points }}</td>
+          <td class="px-2 py-2 text-center font-display text-lg font-bold text-pitch-900">{{ entry.points }}</td>
           <td v-if="!compact" class="hidden px-2 py-2 text-center lg:table-cell">
             <StandingsFormIndicator :form="entry.form" />
           </td>

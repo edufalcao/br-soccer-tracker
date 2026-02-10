@@ -25,12 +25,18 @@ export default {
         surface: {
           DEFAULT: '#ffffff',
           dark: '#0f172a',
-          muted: '#f8fafc',
+          muted: '#f4f7f2',
           'muted-dark': '#1e293b',
         },
       },
       fontFamily: {
-        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['"DM Serif Display"', 'Georgia', 'serif'],
+        sans: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+      },
+      boxShadow: {
+        card: '0 1px 3px 0 rgba(20, 83, 45, 0.08), 0 1px 2px -1px rgba(20, 83, 45, 0.08)',
+        'card-hover': '0 10px 25px -5px rgba(20, 83, 45, 0.12), 0 8px 10px -6px rgba(20, 83, 45, 0.06)',
+        editorial: '0 20px 40px -12px rgba(5, 46, 22, 0.2)',
       },
     },
   },

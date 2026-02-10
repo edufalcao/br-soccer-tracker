@@ -24,8 +24,12 @@
 </script>
 
 <template>
-  <div>
-    <h1 class="mb-6 text-2xl font-bold text-pitch-900 sm:text-3xl">{{ t('news.title') }}</h1>
+  <div class="animate-fade-in">
+    <div class="mb-6">
+      <span class="section-label">{{ t('nav.news') }}</span>
+      <h1 class="section-header mt-1">{{ t('news.title') }}</h1>
+      <div class="mt-1 h-[2px] w-12 bg-accent" />
+    </div>
     <CompetitionFilterBar v-model="selectedCompetition" />
     <BaseErrorState v-if="error" @retry="() => $router.go(0)" />
     <NewsList
@@ -36,6 +40,7 @@
       :total="meta.total"
       :page="meta.page"
       :limit="meta.limit"
+      featured
       @page-change="(p) => (page = p)"
     />
   </div>

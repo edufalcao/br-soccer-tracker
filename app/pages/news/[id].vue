@@ -49,7 +49,10 @@
 
 <template>
   <div>
-    <NuxtLink to="/news" class="mb-4 inline-flex items-center gap-1 text-sm text-pitch-700 hover:text-pitch-900">
+    <NuxtLink
+      to="/news"
+      class="mb-6 inline-flex items-center gap-1 text-sm font-semibold text-pitch-700 hover:text-pitch-900"
+    >
       <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
       </svg>
@@ -58,18 +61,20 @@
 
     <BaseErrorState v-if="error" @retry="() => $router.go(0)" />
 
-    <article v-else-if="article" class="mx-auto max-w-3xl">
-      <img
-        v-if="article.imageUrl"
-        :src="article.imageUrl"
-        :alt="title"
-        class="mb-6 aspect-video w-full rounded-lg object-cover"
-        loading="lazy"
-      />
+    <article v-else-if="article" class="mx-auto max-w-3xl animate-slide-up">
+      <!-- Hero image -->
+      <div v-if="article.imageUrl" class="relative -mx-4 mb-8 overflow-hidden sm:-mx-6 lg:-mx-8">
+        <img :src="article.imageUrl" :alt="title" class="aspect-video w-full object-cover" loading="lazy" />
+        <div
+          class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"
+        />
+      </div>
 
-      <h1 class="mb-3 text-2xl font-bold text-slate-900 sm:text-3xl">{{ title }}</h1>
+      <h1 class="mb-4 font-display text-3xl tracking-tight leading-tight text-pitch-950 sm:text-4xl lg:text-5xl">
+        {{ title }}
+      </h1>
 
-      <div class="mb-6 flex flex-wrap items-center gap-3 text-sm text-slate-500">
+      <div class="mb-6 flex flex-wrap items-center gap-3 text-[10px] font-bold uppercase tracking-wider text-pitch-400">
         <NewsCompetitionBadge v-if="article.competition" :competition="article.competition" />
         <span>{{ article.sourceName }}</span>
         <span>&middot;</span>
@@ -81,14 +86,14 @@
         <div
           v-for="{ id, team } in taggedTeams"
           :key="id"
-          class="flex items-center gap-1.5 rounded-full bg-slate-100 px-2.5 py-1"
+          class="flex items-center gap-1.5 rounded-md bg-pitch-50 px-2.5 py-1 ring-1 ring-pitch-100"
         >
           <TeamBadge :team="team" size="sm" />
-          <span class="text-xs font-medium text-slate-600">{{ getTeamName(id) }}</span>
+          <span class="text-xs font-medium text-pitch-700">{{ getTeamName(id) }}</span>
         </div>
       </div>
 
-      <div class="prose prose-slate max-w-none whitespace-pre-line text-slate-700">
+      <div class="max-w-none whitespace-pre-line text-base leading-relaxed text-pitch-800">
         {{ content }}
       </div>
 
@@ -96,7 +101,7 @@
         :href="article.sourceUrl"
         target="_blank"
         rel="noopener noreferrer"
-        class="mt-6 inline-flex items-center gap-1 text-sm font-medium text-pitch-700 hover:text-pitch-900"
+        class="mt-8 inline-flex items-center gap-1 text-sm font-semibold text-pitch-700 hover:text-pitch-900"
       >
         {{ t('news.readMore') }}
         <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">

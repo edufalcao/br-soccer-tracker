@@ -41,14 +41,20 @@
 
 <template>
   <div v-if="pending" class="space-y-3">
-    <div v-for="i in 4" :key="i" class="h-20 animate-pulse rounded-lg bg-pitch-50" />
+    <div v-for="i in 4" :key="i" class="h-20 animate-pulse rounded-xl bg-pitch-50/80" />
   </div>
   <BaseEmptyState v-else-if="!matches.length" :message="emptyMessage || t('matches.noMatches')" />
   <div v-else class="space-y-6">
     <div v-for="group in groupedByDate" :key="group.label">
-      <h3 class="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500">{{ group.label }}</h3>
+      <h3 class="section-label mb-2">{{ group.label }}</h3>
       <div class="space-y-2">
-        <MatchCard v-for="match in group.matches" :key="match.id" :match="match" :team-map="teamMap" />
+        <MatchCard
+          v-for="(match, index) in group.matches"
+          :key="match.id"
+          :match="match"
+          :team-map="teamMap"
+          :class="['animate-slide-up', `stagger-${(index % 8) + 1}`]"
+        />
       </div>
     </div>
   </div>

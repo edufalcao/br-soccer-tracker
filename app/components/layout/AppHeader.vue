@@ -27,9 +27,9 @@
 </script>
 
 <template>
-  <header class="sticky top-0 z-50 bg-gradient-pitch text-white shadow-lg shadow-pitch-950/30">
-    <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-      <NuxtLink to="/" class="flex items-center gap-2 text-xl font-bold tracking-tight">
+  <header class="sticky top-0 z-50 bg-gradient-editorial texture-noise pitch-lines text-white shadow-editorial">
+    <div class="relative z-10 mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+      <NuxtLink to="/" class="flex items-center gap-2 font-display text-xl tracking-tight">
         <svg class="h-7 w-7 text-accent" viewBox="0 0 24 24" fill="currentColor">
           <circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="1.5" />
           <path
@@ -48,8 +48,8 @@
           v-for="item in navItems"
           :key="item.to"
           :to="item.to"
-          class="relative text-sm font-medium text-pitch-200 transition-colors hover:text-white"
-          active-class="!text-accent after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-full after:bg-accent after:content-['']"
+          class="relative text-xs font-bold uppercase tracking-[0.12em] text-pitch-200 transition-colors hover:text-white"
+          active-class="!text-accent after:absolute after:-bottom-1.5 after:left-0 after:h-[3px] after:w-full after:rounded-full after:bg-accent after:content-['']"
         >
           {{ item.label }}
         </NuxtLink>
@@ -62,14 +62,14 @@
         <template v-if="user">
           <NuxtLink
             to="/settings"
-            class="text-sm font-medium text-pitch-200 transition-colors hover:text-white"
+            class="text-xs font-bold uppercase tracking-[0.12em] text-pitch-200 transition-colors hover:text-white"
             active-class="!text-accent"
           >
             {{ t('nav.settings') }}
           </NuxtLink>
           <button
             :disabled="loggingOut"
-            class="rounded-md bg-pitch-800 px-3 py-1.5 text-sm font-medium text-pitch-100 transition-colors hover:bg-pitch-700 disabled:opacity-50"
+            class="rounded-md bg-pitch-800 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-pitch-100 transition-colors hover:bg-pitch-700 disabled:opacity-50"
             @click="handleLogout"
           >
             {{ t('nav.logout') }}
@@ -80,11 +80,12 @@
         <NuxtLink
           v-else
           to="/auth/login"
-          class="rounded-md bg-accent px-3 py-1.5 text-sm font-medium text-pitch-900 transition-colors hover:bg-accent-light"
+          class="rounded-md bg-accent px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-pitch-900 transition-colors hover:bg-accent-light"
         >
           {{ t('nav.login') }}
         </NuxtLink>
       </div>
     </div>
+    <div class="h-[2px] bg-gradient-accent" />
   </header>
 </template>

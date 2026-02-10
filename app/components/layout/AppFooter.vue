@@ -10,12 +10,12 @@
 </script>
 
 <template>
-  <footer class="hidden border-t border-pitch-800 bg-pitch-950 py-8 text-pitch-300 md:block">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+  <footer class="hidden bg-gradient-editorial texture-noise pitch-lines py-10 text-pitch-300 md:block">
+    <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 gap-8 sm:grid-cols-3">
         <!-- Brand column -->
         <div>
-          <p class="mb-2 text-sm font-bold text-white">BR Soccer Tracker</p>
+          <p class="mb-2 font-display text-lg text-white">BR Soccer Tracker</p>
           <p class="text-xs text-pitch-400">
             {{ t('home.seoDescription') }}
           </p>
@@ -23,7 +23,7 @@
 
         <!-- Quick links column -->
         <div>
-          <p class="mb-2 text-xs font-semibold uppercase tracking-wider text-pitch-400">
+          <p class="section-label mb-3 !text-pitch-400">
             {{ t('nav.home') }}
           </p>
           <nav class="flex flex-col gap-1.5">
@@ -46,7 +46,7 @@
       </div>
 
       <!-- Accent line at bottom -->
-      <div class="mt-6 h-px bg-gradient-accent" />
+      <div class="mt-8 h-[2px] bg-gradient-accent" />
     </div>
   </footer>
 </template>
