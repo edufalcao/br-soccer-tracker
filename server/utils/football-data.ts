@@ -96,10 +96,11 @@ async function fdFetch<T>(endpoint: string, params: Record<string, string | numb
     throw new Error('football-data.org key not configured (NUXT_FOOTBALL_DATA_KEY)')
   }
 
-  return $fetch(`${FOOTBALL_DATA_BASE}${endpoint}`, {
+  const response = await $fetch<unknown>(`${FOOTBALL_DATA_BASE}${endpoint}`, {
     headers: { 'X-Auth-Token': apiKey },
     params,
-  }) as Promise<T>
+  })
+  return response as T
 }
 
 function getCompetitionCode(apiFootballId: number): string {
