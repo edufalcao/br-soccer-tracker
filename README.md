@@ -76,19 +76,48 @@ docker run -p 3000:3000 --env-file .env br-soccer-tracker
 
 ## Scripts
 
-| Command                | Description                        |
-| ---------------------- | ---------------------------------- |
-| `npm run dev`          | Start development server           |
-| `npm run build`        | Build for production               |
-| `npm run preview`      | Preview production build           |
-| `npm run lint`         | Run ESLint                         |
-| `npm run lint:fix`     | Run ESLint with auto-fix           |
-| `npm run format`       | Format all files with Prettier     |
-| `npm run format:check` | Check Prettier formatting          |
-| `npm run db:start`     | Start local Supabase (via Docker)  |
-| `npm run db:stop`      | Stop local Supabase                |
-| `npm run db:reset`     | Reset database & re-run migrations |
-| `npm run db:status`    | Show Supabase service status       |
+| Command                 | Description                        |
+| ----------------------- | ---------------------------------- |
+| `npm run dev`           | Start development server           |
+| `npm run build`         | Build for production               |
+| `npm run preview`       | Preview production build           |
+| `npm run lint`          | Run ESLint                         |
+| `npm run lint:fix`      | Run ESLint with auto-fix           |
+| `npm run format`        | Format all files with Prettier     |
+| `npm run format:check`  | Check Prettier formatting          |
+| `npm test`              | Run all tests (Vitest)             |
+| `npm run test:watch`    | Run tests in watch mode            |
+| `npm run test:coverage` | Run tests with coverage report     |
+| `npm run db:start`      | Start local Supabase (via Docker)  |
+| `npm run db:stop`       | Stop local Supabase                |
+| `npm run db:reset`      | Reset database & re-run migrations |
+| `npm run db:status`     | Show Supabase service status       |
+
+## Testing
+
+Tests are written with [Vitest](https://vitest.dev/) and [@nuxt/test-utils](https://nuxt.com/docs/getting-started/testing).
+
+```bash
+# Run all tests
+npm test
+
+# Watch mode (re-runs on file changes)
+npm run test:watch
+
+# With coverage report
+npm run test:coverage
+```
+
+### Test Structure
+
+```
+tests/
+├── composables/      # Unit tests for Vue composables
+├── server/api/       # Server API route tests
+└── utils/            # Utility function tests
+```
+
+**Current coverage:** 74 tests passing across composables, server API routes, and utilities.
 
 ## Project Structure
 

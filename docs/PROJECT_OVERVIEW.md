@@ -105,13 +105,13 @@ External APIs  →  Nitro scheduled tasks  →  Supabase (cache/store)
 - [x] Skeleton loading states, lazy image loading
 - [x] SEO (useHead, useSeoMeta per page)
 
-### Phase 8: Testing & Error Handling
+### Phase 8: Testing & Error Handling ✅
 
-- [ ] Unit tests for composables (Vitest)
-- [ ] Component tests (@nuxt/test-utils)
-- [ ] API route tests
+- [x] Unit tests for composables (Vitest)
+- [x] Component tests (@nuxt/test-utils)
+- [x] API route tests
 - [ ] E2E tests (Playwright)
-- [ ] Global error page (`error.vue`) and graceful degradation
+- [x] Global error page (`error.vue`) and graceful degradation
 
 ### Phase 9: Resilience & API Management
 
