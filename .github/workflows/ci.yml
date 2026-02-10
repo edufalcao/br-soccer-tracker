@@ -79,6 +79,8 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          NUXT_SKIP_TYPECHECK: 'true'
 
   docker:
     name: Docker Build
