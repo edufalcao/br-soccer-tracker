@@ -52,17 +52,37 @@
 
   <!-- Article grid -->
   <div v-else>
-    <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+    <!-- Featured layout: hero card spans 2 cols/rows, side cards determine row height -->
+    <template v-if="featured && articles.length >= 3">
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:grid-rows-2">
+        <NewsCard
+          :article="articles[0]!"
+          :team-map="teamMap"
+          hero
+          class="animate-fade-in stagger-1 md:col-span-2 lg:row-span-2"
+        />
+        <NewsCard :article="articles[1]!" :team-map="teamMap" class="animate-fade-in stagger-2" />
+        <NewsCard :article="articles[2]!" :team-map="teamMap" class="animate-fade-in stagger-3" />
+      </div>
+      <div v-if="articles.length > 3" class="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <NewsCard
+          v-for="(article, index) in articles.slice(3)"
+          :key="article.id"
+          :article="article"
+          :team-map="teamMap"
+          :class="['animate-fade-in', `stagger-${((index + 3) % 8) + 1}`]"
+        />
+      </div>
+    </template>
+
+    <!-- Regular grid (non-featured or too few articles) -->
+    <div v-else class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
       <NewsCard
         v-for="(article, index) in articles"
         :key="article.id"
         :article="article"
         :team-map="teamMap"
-        :class="[
-          'animate-fade-in',
-          `stagger-${(index % 8) + 1}`,
-          featured && index === 0 && 'lg:col-span-2 lg:row-span-2',
-        ]"
+        :class="['animate-fade-in', `stagger-${(index % 8) + 1}`]"
       />
     </div>
 

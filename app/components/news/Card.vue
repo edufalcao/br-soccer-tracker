@@ -1,8 +1,12 @@
 <script setup lang="ts">
-  const props = defineProps<{
-    article: NewsArticle
-    teamMap: Map<number, Team>
-  }>()
+  const props = withDefaults(
+    defineProps<{
+      article: NewsArticle
+      teamMap: Map<number, Team>
+      hero?: boolean
+    }>(),
+    { hero: false },
+  )
 
   const { locale } = useI18n()
 
@@ -22,7 +26,38 @@
 </script>
 
 <template>
-  <NuxtLink :to="`/news/${article.id}`" class="group block">
+  <!-- Hero variant: full-bleed image with overlay text, adapts to container height -->
+  <NuxtLink v-if="hero" :to="`/news/${article.id}`" class="group block h-full">
+    <BaseCard hoverable :padded="false" editorial class="h-full">
+      <div class="relative h-full min-h-[280px] overflow-hidden bg-pitch-900">
+        <img
+          v-if="article.imageUrl"
+          :src="article.imageUrl"
+          :alt="title"
+          class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          loading="lazy"
+        />
+        <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+        <div v-if="article.competition" class="absolute left-3 top-3 z-10">
+          <NewsCompetitionBadge :competition="article.competition" />
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
+          <h3 class="mb-1 line-clamp-3 font-display text-lg text-white sm:text-xl lg:text-2xl">
+            {{ title }}
+          </h3>
+          <p v-if="description" class="mb-2 line-clamp-2 text-sm text-white/80">{{ description }}</p>
+          <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider text-white/60">
+            <span>{{ article.sourceName }}</span>
+            <span>&middot;</span>
+            <time>{{ formattedDate }}</time>
+          </div>
+        </div>
+      </div>
+    </BaseCard>
+  </NuxtLink>
+
+  <!-- Default variant -->
+  <NuxtLink v-else :to="`/news/${article.id}`" class="group block">
     <BaseCard hoverable :padded="false" editorial>
       <div class="relative aspect-video w-full overflow-hidden bg-pitch-50">
         <img
