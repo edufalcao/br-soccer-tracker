@@ -1,7 +1,7 @@
 export default defineTask({
   meta: {
     name: 'matches:sync-fixtures',
-    description: 'Sync match fixtures from API-Football for all competitions',
+    description: 'Sync match fixtures from API-Football for all competitions (with fallback to football-data.org)',
   },
   async run() {
     const supabase = useSupabaseAdmin()
@@ -9,7 +9,22 @@ export default defineTask({
 
     for (const comp of COMPETITIONS) {
       try {
-        const fixtures = await fetchFixtures(comp.apiFootballId, CURRENT_SEASON)
+        let fixtures: ApiFootballFixtureEntry[]
+
+        if (canCallApi('api-football')) {
+          try {
+            fixtures = await withRetry(() => fetchFixtures(comp.apiFootballId, CURRENT_SEASON))
+            recordApiCall('api-football')
+            console.info(`[sync-fixtures] API-Football success for ${comp.id}`)
+          } catch (primaryErr) {
+            console.warn(`[sync-fixtures] API-Football failed for ${comp.id}, trying football-data.org`, primaryErr)
+            fixtures = await withRetry(() => fdFetchFixtures(comp.apiFootballId, CURRENT_SEASON))
+            console.info(`[sync-fixtures] football-data.org fallback success for ${comp.id}`)
+          }
+        } else {
+          console.warn(`[sync-fixtures] API-Football rate limit reached, using football-data.org for ${comp.id}`)
+          fixtures = await withRetry(() => fdFetchFixtures(comp.apiFootballId, CURRENT_SEASON))
+        }
 
         const rows = fixtures.map((f) => ({
           external_id: f.fixture.id,
@@ -36,6 +51,7 @@ export default defineTask({
 
         results[comp.id] = `${rows.length} fixtures synced`
       } catch (err) {
+        console.error(`[sync-fixtures] Failed for ${comp.id}:`, err)
         results[comp.id] = `error: ${err instanceof Error ? err.message : String(err)}`
       }
     }

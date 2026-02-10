@@ -15,6 +15,8 @@ export default defineVitestConfig({
       ['tests/utils/api-football.test.ts', 'node'],
       ['tests/utils/competitions.test.ts', 'node'],
       ['tests/utils/news-sources.test.ts', 'node'],
+      ['tests/utils/rate-limiter.test.ts', 'node'],
+      ['tests/utils/retry.test.ts', 'node'],
       ['tests/server/**', 'node'],
     ],
     coverage: {

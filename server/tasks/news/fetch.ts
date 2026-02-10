@@ -7,7 +7,7 @@ const NEWS_QUERIES: { query: string; competition: Competition | null }[] = [
 export default defineTask({
   meta: {
     name: 'news:fetch',
-    description: 'Fetch news from GNews API and Google News RSS',
+    description: 'Fetch news from GNews API (with fallback to Google News RSS)',
   },
   async run() {
     const supabase = useSupabaseAdmin()
@@ -18,35 +18,49 @@ export default defineTask({
 
     const allArticles: NewsRow[] = []
 
-    // --- GNews (requires API key) ---
-    for (const { query, competition } of NEWS_QUERIES) {
-      try {
-        const articles = await fetchGNews(query, 10)
-        for (const a of articles) {
-          allArticles.push({
-            external_id: a.url,
-            title: a.title,
-            description: a.description,
-            content: a.content,
-            source_name: a.source.name,
-            source_url: a.url,
-            image_url: a.image,
-            published_at: a.publishedAt,
-            competition,
-            team_tags: tagTeams(`${a.title} ${a.description}`, teamList),
-            language: 'pt',
-            is_active: true,
-          })
+    // --- GNews (requires API key, rate-limited) ---
+    let gnewsFailed = false
+
+    if (canCallApi('gnews')) {
+      for (const { query, competition } of NEWS_QUERIES) {
+        try {
+          const articles = await withRetry(() => fetchGNews(query, 10))
+          recordApiCall('gnews')
+          console.info(`[news:fetch] GNews success for "${query}" (${articles.length} articles)`)
+
+          for (const a of articles) {
+            allArticles.push({
+              external_id: a.url,
+              title: a.title,
+              description: a.description,
+              content: a.content,
+              source_name: a.source.name,
+              source_url: a.url,
+              image_url: a.image,
+              published_at: a.publishedAt,
+              competition,
+              team_tags: tagTeams(`${a.title} ${a.description}`, teamList),
+              language: 'pt',
+              is_active: true,
+            })
+          }
+        } catch (err) {
+          console.warn(`[news:fetch] GNews failed for "${query}":`, err)
+          gnewsFailed = true
         }
-      } catch {
-        // GNews key may not be configured — continue with RSS
       }
+    } else {
+      console.warn('[news:fetch] GNews rate limit reached, skipping to RSS fallback')
+      gnewsFailed = true
     }
 
-    // --- Google News RSS (no key needed) ---
+    // --- Google News RSS (no key needed, fallback) ---
+    // Always fetch RSS for supplementary content; prioritize if GNews failed
     for (const { query, competition } of NEWS_QUERIES) {
       try {
-        const items = await fetchGoogleNewsRss(query)
+        const items = await withRetry(() => fetchGoogleNewsRss(query))
+        console.info(`[news:fetch] RSS success for "${query}" (${items.length} items)`)
+
         for (const item of items) {
           allArticles.push({
             external_id: item.link,
@@ -63,12 +77,13 @@ export default defineTask({
             is_active: true,
           })
         }
-      } catch {
-        // RSS fetch failed — continue
+      } catch (err) {
+        console.error(`[news:fetch] RSS also failed for "${query}":`, err)
       }
     }
 
     if (!allArticles.length) {
+      console.error('[news:fetch] No articles fetched from any source')
       return { result: 'No articles fetched from any source' }
     }
 
@@ -82,9 +97,14 @@ export default defineTask({
 
     const { error } = await supabase.from('news_articles').upsert(uniqueArticles, { onConflict: 'external_id' })
 
-    return {
-      result: error ? `Error: ${error.message}` : `${uniqueArticles.length} articles synced`,
+    const resultMsg = error ? `Error: ${error.message}` : `${uniqueArticles.length} articles synced`
+    if (gnewsFailed) {
+      console.warn(`[news:fetch] Completed with GNews fallback. ${resultMsg}`)
+    } else {
+      console.info(`[news:fetch] ${resultMsg}`)
     }
+
+    return { result: resultMsg }
   },
 })
 

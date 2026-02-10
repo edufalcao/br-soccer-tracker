@@ -40,6 +40,7 @@ Edit `.env` with your keys:
 | `NUXT_SUPABASE_SERVICE_ROLE_KEY` | Supabase service role key (server tasks)                             |
 | `NUXT_API_FOOTBALL_KEY`          | API-Football key from [api-sports.io](https://www.api-football.com/) |
 | `NUXT_GNEWS_API_KEY`             | GNews API key from [gnews.io](https://gnews.io/)                     |
+| `NUXT_FOOTBALL_DATA_KEY`         | football-data.org API key (fallback, optional)                       |
 
 ### 3. Start Supabase locally
 
@@ -143,11 +144,27 @@ supabase/migrations/  # Database schema & RLS policies
 
 All external API calls happen exclusively in server-side Nitro scheduled tasks. Client-facing routes read only from Supabase.
 
-| Purpose              | API                                           | Free Tier   |
-| -------------------- | --------------------------------------------- | ----------- |
-| Match data           | [API-Football](https://www.api-football.com/) | 100 req/day |
-| News                 | [GNews](https://gnews.io/)                    | 100 req/day |
-| News (supplementary) | Google News RSS                               | Unlimited   |
+| Purpose               | API                                                | Free Tier   |
+| --------------------- | -------------------------------------------------- | ----------- |
+| Match data (primary)  | [API-Football](https://www.api-football.com/)      | 100 req/day |
+| Match data (fallback) | [football-data.org](https://www.football-data.org) | 10 req/min  |
+| News (primary)        | [GNews](https://gnews.io/)                         | 100 req/day |
+| News (supplementary)  | Google News RSS                                    | Unlimited   |
+
+## Health Check
+
+The `/api/health` endpoint returns system health status:
+
+```bash
+curl http://localhost:3000/api/health
+```
+
+Response includes:
+
+- **status**: `ok` | `degraded` | `error`
+- **supabase**: database connectivity
+- **apiFootball / gnews**: remaining daily API calls and health
+- **uptime**: server uptime in seconds
 
 ## License
 

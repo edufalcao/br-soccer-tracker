@@ -1,7 +1,7 @@
 export default defineTask({
   meta: {
     name: 'matches:sync-standings',
-    description: 'Sync league standings from API-Football for all competitions',
+    description: 'Sync league standings (with fallback to football-data.org)',
   },
   async run() {
     const supabase = useSupabaseAdmin()
@@ -9,7 +9,22 @@ export default defineTask({
 
     for (const comp of COMPETITIONS) {
       try {
-        const standings = await fetchStandings(comp.apiFootballId, CURRENT_SEASON)
+        let standings: ApiFootballStandingTeam[]
+
+        if (canCallApi('api-football')) {
+          try {
+            standings = await withRetry(() => fetchStandings(comp.apiFootballId, CURRENT_SEASON))
+            recordApiCall('api-football')
+            console.info(`[sync-standings] API-Football success for ${comp.id}`)
+          } catch (primaryErr) {
+            console.warn(`[sync-standings] API-Football failed for ${comp.id}, trying football-data.org`, primaryErr)
+            standings = await withRetry(() => fdFetchStandings(comp.apiFootballId, CURRENT_SEASON))
+            console.info(`[sync-standings] football-data.org fallback success for ${comp.id}`)
+          }
+        } else {
+          console.warn(`[sync-standings] API-Football rate limit reached, using football-data.org for ${comp.id}`)
+          standings = await withRetry(() => fdFetchStandings(comp.apiFootballId, CURRENT_SEASON))
+        }
 
         const rows = standings.map((entry) => ({
           competition: comp.id,
@@ -35,6 +50,7 @@ export default defineTask({
 
         results[comp.id] = `${rows.length} entries synced`
       } catch (err) {
+        console.error(`[sync-standings] Failed for ${comp.id}:`, err)
         results[comp.id] = `error: ${err instanceof Error ? err.message : String(err)}`
       }
     }

@@ -1,7 +1,7 @@
 export default defineTask({
   meta: {
     name: 'matches:sync-live',
-    description: 'Sync live match scores from API-Football (only when matches are potentially in progress)',
+    description: 'Sync live match scores (with fallback to football-data.org)',
   },
   async run() {
     const supabase = useSupabaseAdmin()
@@ -32,7 +32,22 @@ export default defineTask({
       if (!comp) continue
 
       try {
-        const liveFixtures = await fetchLiveFixtures(comp.apiFootballId)
+        let liveFixtures: ApiFootballFixtureEntry[]
+
+        if (canCallApi('api-football')) {
+          try {
+            liveFixtures = await withRetry(() => fetchLiveFixtures(comp.apiFootballId))
+            recordApiCall('api-football')
+            console.info(`[sync-live] API-Football success for ${comp.id}`)
+          } catch (primaryErr) {
+            console.warn(`[sync-live] API-Football failed for ${comp.id}, trying football-data.org`, primaryErr)
+            liveFixtures = await withRetry(() => fdFetchLiveFixtures(comp.apiFootballId))
+            console.info(`[sync-live] football-data.org fallback success for ${comp.id}`)
+          }
+        } else {
+          console.warn(`[sync-live] API-Football rate limit reached, using football-data.org for ${comp.id}`)
+          liveFixtures = await withRetry(() => fdFetchLiveFixtures(comp.apiFootballId))
+        }
 
         if (!liveFixtures.length) {
           results[comp.id] = 'no live matches found'
@@ -64,6 +79,7 @@ export default defineTask({
 
         results[comp.id] = `${rows.length} live matches updated`
       } catch (err) {
+        console.error(`[sync-live] Failed for ${comp.id}:`, err)
         results[comp.id] = `error: ${err instanceof Error ? err.message : String(err)}`
       }
     }

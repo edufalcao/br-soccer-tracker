@@ -36,6 +36,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     apiFootballKey: '',
     gnewsApiKey: '',
+    footballDataKey: '',
     supabaseServiceRoleKey: '',
     public: {
       supabaseUrl: '',

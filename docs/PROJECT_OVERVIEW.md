@@ -113,12 +113,12 @@ External APIs  →  Nitro scheduled tasks  →  Supabase (cache/store)
 - [ ] E2E tests (Playwright)
 - [x] Global error page (`error.vue`) and graceful degradation
 
-### Phase 9: Resilience & API Management
+### Phase 9: Resilience & API Management ✅
 
-- [ ] Rate-limit tracking for external APIs (API-Football 100 req/day, GNews 100 req/day)
-- [ ] Fallback logic: API-Football → football-data.org, GNews → Google News RSS
-- [ ] Retry with exponential backoff for transient failures
-- [ ] Health check endpoint (`/api/health`)
+- [x] Rate-limit tracking for external APIs (API-Football 100 req/day, GNews 100 req/day)
+- [x] Fallback logic: API-Football → football-data.org, GNews → Google News RSS
+- [x] Retry with exponential backoff for transient failures
+- [x] Health check endpoint (`/api/health`)
 
 ### Phase 10: CI/CD & Deployment
 
