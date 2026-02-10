@@ -19,6 +19,13 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
 COPY . .
+# Build-time env vars required by Nuxt/Supabase (overridable via --build-arg)
+ARG SUPABASE_URL=http://placeholder.supabase.co
+ARG SUPABASE_KEY=placeholder-anon-key
+ARG NUXT_SUPABASE_SERVICE_ROLE_KEY=placeholder
+ENV SUPABASE_URL=$SUPABASE_URL
+ENV SUPABASE_KEY=$SUPABASE_KEY
+ENV NUXT_SUPABASE_SERVICE_ROLE_KEY=$NUXT_SUPABASE_SERVICE_ROLE_KEY
 RUN npm run build
 
 # Stage 3: Production runtime
