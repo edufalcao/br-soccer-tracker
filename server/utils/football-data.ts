@@ -91,9 +91,9 @@ const FD_STATUS_MAP: Record<string, string> = {
 // --- HTTP helper ---
 
 async function fdFetch<T>(endpoint: string, params: Record<string, string | number> = {}): Promise<T> {
-  const apiKey = process.env.NUXT_FOOTBALL_DATA_KEY
+  const apiKey = process.env.NUXT_FOOTBALL_DATA_API_KEY
   if (!apiKey) {
-    throw new Error('football-data.org key not configured (NUXT_FOOTBALL_DATA_KEY)')
+    throw new Error('football-data.org key not configured (NUXT_FOOTBALL_DATA_API_KEY)')
   }
 
   const response = await $fetch<unknown>(`${FOOTBALL_DATA_BASE}${endpoint}`, {

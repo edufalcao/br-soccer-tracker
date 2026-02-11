@@ -46,9 +46,9 @@ docker compose up
 | `SUPABASE_URL`                   | ✅       | Supabase project URL                          |
 | `SUPABASE_KEY`                   | ✅       | Supabase anon (public) key                    |
 | `NUXT_SUPABASE_SERVICE_ROLE_KEY` | ✅       | Supabase service role key (server-side only)  |
-| `NUXT_API_FOOTBALL_KEY`          | ❌       | API-Football key (api-sports.io) — match data |
+| `NUXT_FOOTBALL_API_KEY`          | ❌       | API-Football key (api-sports.io) — match data |
 | `NUXT_GNEWS_API_KEY`             | ❌       | GNews API key — news articles                 |
-| `NUXT_FOOTBALL_DATA_KEY`         | ❌       | football-data.org key — fallback match data   |
+| `NUXT_FOOTBALL_DATA_API_KEY`     | ❌       | football-data.org key — fallback match data   |
 
 Optional keys control scheduled sync tasks. Without them, the corresponding features won't populate data but the app will still run.
 
@@ -69,7 +69,7 @@ docker run -d \
   -e SUPABASE_URL=https://your-project.supabase.co \
   -e SUPABASE_KEY=your-anon-key \
   -e NUXT_SUPABASE_SERVICE_ROLE_KEY=your-service-role-key \
-  -e NUXT_API_FOOTBALL_KEY=your-key \
+  -e NUXT_FOOTBALL_API_KEY=your-key \
   -e NUXT_GNEWS_API_KEY=your-key \
   br-soccer-tracker
 ```

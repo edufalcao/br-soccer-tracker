@@ -6,9 +6,8 @@ export default defineNitroPlugin(() => {
   ]
 
   const optional: Array<{ key: string; env: string }> = [
-    { key: 'API_FOOTBALL_KEY', env: 'NUXT_API_FOOTBALL_KEY' },
+    { key: 'FOOTBALL_API_KEY', env: 'NUXT_FOOTBALL_API_KEY' },
     { key: 'GNEWS_API_KEY', env: 'NUXT_GNEWS_API_KEY' },
-    { key: 'FOOTBALL_DATA_KEY', env: 'NUXT_FOOTBALL_DATA_KEY' },
   ]
 
   const missing = required.filter((v) => !process.env[v.env])
