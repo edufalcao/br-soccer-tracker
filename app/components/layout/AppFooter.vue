@@ -15,7 +15,7 @@
       <div class="grid grid-cols-1 gap-8 sm:grid-cols-3">
         <!-- Brand column -->
         <div>
-          <p class="mb-2 font-display text-lg font-bold text-primary">BR Soccer Tracker</p>
+          <p class="mb-2 font-display text-lg font-bold text-primary">{{ t('home.title') }}</p>
           <p class="text-xs text-secondary">
             {{ t('home.seoDescription') }}
           </p>
