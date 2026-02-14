@@ -17,7 +17,7 @@
   <div class="flex items-center gap-1">
     <button
       class="overflow-hidden rounded-sm transition-all"
-      :class="locale === 'pt-BR' ? 'ring-2 ring-accent opacity-100' : 'opacity-40 hover:opacity-70'"
+      :class="locale === 'pt-BR' ? 'ring-2 ring-neon opacity-100' : 'opacity-40 hover:opacity-70'"
       title="Português"
       @click="switchTo('pt-BR')"
     >
@@ -30,7 +30,7 @@
     </button>
     <button
       class="overflow-hidden rounded-sm transition-all"
-      :class="locale === 'en' ? 'ring-2 ring-accent opacity-100' : 'opacity-40 hover:opacity-70'"
+      :class="locale === 'en' ? 'ring-2 ring-neon opacity-100' : 'opacity-40 hover:opacity-70'"
       title="English"
       @click="switchTo('en')"
     >

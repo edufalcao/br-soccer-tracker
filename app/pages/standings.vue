@@ -25,12 +25,12 @@
     <div class="mb-6">
       <span class="section-label">{{ t('nav.standings') }}</span>
       <h1 class="section-header mt-1">{{ t('standings.title') }}</h1>
-      <div class="mt-1 h-[2px] w-12 bg-accent" />
+      <div class="mt-1 h-px w-12 bg-neon/50" />
     </div>
     <BaseTabs v-model="activeCompetition" :items="competitionTabs" />
-    <div class="pitch-sideline">
+    <div>
       <BaseErrorState v-if="error" @retry="() => $router.go(0)" />
-      <BaseCard v-else editorial>
+      <BaseCard v-else glow>
         <StandingsTable :standings="standings" :team-map="teamMap" :pending="pending" />
       </BaseCard>
     </div>

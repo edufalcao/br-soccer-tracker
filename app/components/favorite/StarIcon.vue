@@ -12,7 +12,7 @@
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
     fill="currentColor"
-    class="shrink-0 text-accent"
+    class="shrink-0 text-gold"
     :class="size === 'xs' ? 'h-3 w-3' : 'h-4 w-4'"
   >
     <path

@@ -9,10 +9,10 @@
       .slice(-5)
       .split('')
       .map((c) => {
-        if (c === 'W') return { char: c, color: 'bg-green-500' }
-        if (c === 'D') return { char: c, color: 'bg-yellow-500' }
-        if (c === 'L') return { char: c, color: 'bg-red-500' }
-        return { char: c, color: 'bg-pitch-300' }
+        if (c === 'W') return { char: c, color: 'bg-neon' }
+        if (c === 'D') return { char: c, color: 'bg-gold' }
+        if (c === 'L') return { char: c, color: 'bg-live' }
+        return { char: c, color: 'bg-ink-muted' }
       })
   })
 </script>

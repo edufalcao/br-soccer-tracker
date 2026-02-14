@@ -17,23 +17,23 @@
     <div>
       <span class="section-label">{{ t('nav.favorites') }}</span>
       <h1 class="section-header mt-1">{{ t('favorites.title') }}</h1>
-      <div class="mt-1 h-[2px] w-12 bg-accent" />
-      <p class="mt-2 text-sm text-pitch-600">{{ t('favorites.subtitle') }}</p>
+      <div class="mt-1 h-px w-12 bg-neon/50" />
+      <p class="mt-2 text-sm text-secondary">{{ t('favorites.subtitle') }}</p>
     </div>
 
     <!-- Selection count + clear -->
     <div v-if="hasFavorites" class="flex items-center justify-between">
-      <span class="text-sm font-medium text-pitch-600">
+      <span class="text-sm font-medium text-secondary">
         {{ t('favorites.teamsSelected', { count: favoriteTeamIds.length }) }}
       </span>
-      <button class="text-sm font-semibold text-red-600 hover:text-red-700" @click="clearFavorites">
+      <button class="text-sm font-semibold text-live hover:text-red-400 transition-colors" @click="clearFavorites">
         {{ t('favorites.clearAll') }}
       </button>
     </div>
 
     <!-- Loading -->
     <div v-if="pending" class="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4">
-      <div v-for="i in 8" :key="i" class="h-14 animate-pulse rounded-lg bg-pitch-50" />
+      <div v-for="i in 8" :key="i" class="h-14 animate-pulse rounded-lg bg-card-raised" />
     </div>
 
     <!-- Team picker -->

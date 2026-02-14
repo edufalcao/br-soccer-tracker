@@ -1,7 +1,7 @@
 <script setup lang="ts">
   const props = withDefaults(
     defineProps<{
-      variant?: 'primary' | 'secondary' | 'ghost'
+      variant?: 'primary' | 'secondary' | 'ghost' | 'danger'
       size?: 'sm' | 'md' | 'lg'
       loading?: boolean
       disabled?: boolean
@@ -17,10 +17,10 @@
   )
 
   const variantClasses: Record<string, string> = {
-    primary: 'bg-pitch-800 text-white shadow-sm shadow-pitch-900/20 hover:bg-pitch-900 focus-visible:ring-pitch-500',
-    secondary:
-      'bg-white text-pitch-900 ring-1 ring-pitch-200 hover:bg-pitch-50 hover:ring-pitch-300 focus-visible:ring-pitch-500',
-    ghost: 'text-pitch-700 hover:bg-pitch-50 hover:text-pitch-900 focus-visible:ring-pitch-500',
+    primary: 'bg-neon text-void hover:bg-neon-dim shadow-sm focus-visible:ring-neon',
+    secondary: 'bg-transparent text-neon border border-neon/40 hover:bg-neon/10 focus-visible:ring-neon',
+    ghost: 'text-secondary hover:text-neon focus-visible:ring-neon',
+    danger: 'bg-live text-white hover:bg-red-600 focus-visible:ring-live',
   }
 
   const sizeClasses: Record<string, string> = {
@@ -30,7 +30,7 @@
   }
 
   const classes = computed(() => [
-    'inline-flex items-center justify-center gap-2 rounded-lg font-semibold tracking-wide transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+    'inline-flex items-center justify-center gap-2 rounded-lg font-display font-semibold uppercase tracking-wide transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-page)] disabled:pointer-events-none disabled:opacity-50',
     variantClasses[props.variant],
     sizeClasses[props.size],
   ])

@@ -10,15 +10,13 @@
 </script>
 
 <template>
-  <div class="mb-4 flex gap-1 overflow-x-auto rounded-lg bg-pitch-50/50 p-1 ring-1 ring-pitch-100">
+  <div class="mb-4 flex gap-4 overflow-x-auto border-b border-theme pb-px">
     <button
       v-for="item in items"
       :key="item.key"
-      class="whitespace-nowrap rounded-md px-3 py-2 text-xs font-semibold uppercase tracking-wide transition-all duration-200"
+      class="whitespace-nowrap border-b-2 px-1 py-2 font-display text-xs font-bold uppercase tracking-widest transition-all duration-200"
       :class="
-        modelValue === item.key
-          ? 'bg-white text-pitch-900 shadow-card ring-1 ring-pitch-100/50'
-          : 'text-pitch-600 hover:bg-pitch-100/50 hover:text-pitch-800'
+        modelValue === item.key ? 'border-neon text-neon' : 'border-transparent text-secondary hover:text-primary'
       "
       @click="emit('update:modelValue', item.key)"
     >

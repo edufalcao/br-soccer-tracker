@@ -51,7 +51,7 @@
   <div>
     <NuxtLink
       to="/news"
-      class="mb-6 inline-flex items-center gap-1 text-sm font-semibold text-pitch-700 hover:text-pitch-900"
+      class="mb-6 inline-flex items-center gap-1 text-sm font-semibold text-neon transition-colors hover:text-neon-dim"
     >
       <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
@@ -63,18 +63,20 @@
 
     <article v-else-if="article" class="mx-auto max-w-3xl animate-slide-up">
       <!-- Hero image -->
-      <div v-if="article.imageUrl" class="relative -mx-4 mb-8 overflow-hidden sm:-mx-6 lg:-mx-8">
+      <div v-if="article.imageUrl" class="relative -mx-4 mb-8 overflow-hidden rounded-xl sm:-mx-6 lg:-mx-8">
         <img :src="article.imageUrl" :alt="title" class="aspect-video w-full object-cover" loading="lazy" />
-        <div
-          class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"
-        />
+        <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-void via-transparent to-transparent" />
       </div>
 
-      <h1 class="mb-4 font-display text-3xl tracking-tight leading-tight text-pitch-950 sm:text-4xl lg:text-5xl">
+      <h1
+        class="mb-4 font-display text-3xl font-bold tracking-tight leading-tight text-primary sm:text-4xl lg:text-5xl"
+      >
         {{ title }}
       </h1>
 
-      <div class="mb-6 flex flex-wrap items-center gap-3 text-[10px] font-bold uppercase tracking-wider text-pitch-400">
+      <div
+        class="mb-6 flex flex-wrap items-center gap-3 font-mono text-[10px] uppercase tracking-widest text-secondary"
+      >
         <NewsCompetitionBadge v-if="article.competition" :competition="article.competition" />
         <span>{{ article.sourceName }}</span>
         <span>&middot;</span>
@@ -86,22 +88,24 @@
         <div
           v-for="{ id, team } in taggedTeams"
           :key="id"
-          class="flex items-center gap-1.5 rounded-md bg-pitch-50 px-2.5 py-1 ring-1 ring-pitch-100"
+          class="flex items-center gap-1.5 rounded-md glass px-2.5 py-1"
         >
           <TeamBadge :team="team" size="sm" />
-          <span class="text-xs font-medium text-pitch-700">{{ getTeamName(id) }}</span>
+          <span class="text-xs font-medium text-primary">{{ getTeamName(id) }}</span>
         </div>
       </div>
 
-      <div class="max-w-none whitespace-pre-line text-base leading-relaxed text-pitch-800">
+      <div class="max-w-none whitespace-pre-line text-base leading-relaxed text-primary">
         {{ content }}
       </div>
+
+      <div class="mx-auto mt-8 h-px w-16 bg-gradient-to-r from-transparent via-neon/50 to-transparent" />
 
       <a
         :href="article.sourceUrl"
         target="_blank"
         rel="noopener noreferrer"
-        class="mt-8 inline-flex items-center gap-1 text-sm font-semibold text-pitch-700 hover:text-pitch-900"
+        class="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-neon transition-colors hover:text-neon-dim"
       >
         {{ t('news.readMore') }}
         <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">

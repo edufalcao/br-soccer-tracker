@@ -24,16 +24,12 @@
 </script>
 
 <template>
-  <nav class="mb-4 flex flex-wrap gap-4 border-b border-pitch-100">
+  <nav class="mb-4 flex flex-wrap gap-4 border-b border-theme">
     <template v-for="option in options" :key="option.key">
       <button
         v-if="option.key !== 'all' || showAll"
         class="relative pb-2.5 text-xs font-bold uppercase tracking-[0.12em] transition-colors"
-        :class="
-          modelValue === option.key
-            ? 'text-pitch-900 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:bg-accent'
-            : 'text-pitch-400 hover:text-pitch-700'
-        "
+        :class="modelValue === option.key ? 'text-neon border-b-2 border-neon' : 'text-secondary hover:text-primary'"
         @click="emit('update:modelValue', option.key)"
       >
         {{ t(option.labelKey) }}

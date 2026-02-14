@@ -12,23 +12,31 @@
       case 'live':
         return {
           text: props.elapsedMinutes ? `${props.elapsedMinutes}'` : t('matches.live'),
-          classes: 'bg-red-600 text-white',
+          classes: 'bg-live/20 text-live border border-live/30 font-display font-bold',
           pulse: true,
         }
       case 'finished':
-        return { text: t('matches.fulltime'), classes: 'bg-pitch-100 text-pitch-700', pulse: false }
+        return {
+          text: t('matches.fulltime'),
+          classes: 'bg-card-raised text-secondary border border-theme',
+          pulse: false,
+        }
       case 'scheduled':
         return {
           text: props.kickoffAt ? formatTime(props.kickoffAt, locale.value) : t('matches.scheduled'),
-          classes: 'bg-pitch-50 text-pitch-600',
+          classes: 'bg-card-raised text-secondary border border-theme font-mono',
           pulse: false,
         }
       case 'postponed':
-        return { text: t('matches.postponed'), classes: 'bg-orange-50 text-orange-600', pulse: false }
+        return { text: t('matches.postponed'), classes: 'bg-gold/15 text-gold border border-gold/20', pulse: false }
       case 'cancelled':
-        return { text: t('matches.cancelled'), classes: 'bg-pitch-100 text-pitch-400', pulse: false }
+        return {
+          text: t('matches.cancelled'),
+          classes: 'bg-card-raised text-secondary border border-theme',
+          pulse: false,
+        }
       default:
-        return { text: props.status, classes: 'bg-pitch-100 text-pitch-600', pulse: false }
+        return { text: props.status, classes: 'bg-card-raised text-secondary border border-theme', pulse: false }
     }
   })
 </script>
@@ -39,8 +47,8 @@
     :class="display.classes"
   >
     <span v-if="display.pulse" class="relative flex h-1.5 w-1.5">
-      <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75" />
-      <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-white" />
+      <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-live opacity-75" />
+      <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-live" />
     </span>
     {{ display.text }}
   </span>

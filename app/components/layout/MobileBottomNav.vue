@@ -12,14 +12,14 @@
 
 <template>
   <nav class="fixed inset-x-0 bottom-0 z-40 pb-[env(safe-area-inset-bottom)] md:hidden">
-    <div class="h-[2px] bg-gradient-accent" />
-    <div class="grid grid-cols-5 bg-pitch-950">
+    <div class="h-px bg-gradient-to-r from-transparent via-neon/20 to-transparent" />
+    <div class="glass grid grid-cols-5 !rounded-none !border-t-0">
       <NuxtLink
         v-for="item in navItems"
         :key="item.to"
         :to="item.to"
-        class="group flex flex-col items-center justify-center gap-0.5 py-2 text-pitch-300 transition-colors"
-        active-class="!text-accent"
+        class="group flex flex-col items-center justify-center gap-0.5 py-2.5 text-secondary transition-colors"
+        active-class="!text-neon"
       >
         <!-- Home -->
         <svg
@@ -101,10 +101,12 @@
           />
         </svg>
 
-        <span class="text-[10px] font-semibold leading-tight tracking-wide">{{ item.label }}</span>
-        <!-- Active dot indicator -->
+        <span class="font-display text-[9px] font-semibold uppercase leading-tight tracking-widest">
+          {{ item.label }}
+        </span>
+        <!-- Active glow dot indicator -->
         <span
-          class="h-1 w-1 rounded-full bg-accent opacity-0 transition-opacity group-[.router-link-active]:opacity-100"
+          class="h-1 w-1 rounded-full bg-neon opacity-0 shadow-[0_0_6px_rgba(0,255,135,0.5)] transition-opacity group-[.router-link-active]:opacity-100"
         />
       </NuxtLink>
     </div>

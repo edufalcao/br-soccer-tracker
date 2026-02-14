@@ -69,85 +69,103 @@
 </script>
 
 <template>
-  <div class="space-y-10">
+  <div class="space-y-8">
     <!-- Hero Section -->
     <section
-      class="-mx-4 -mt-6 mb-2 bg-gradient-editorial texture-noise pitch-lines px-4 py-12 text-white sm:-mx-6 sm:px-6 sm:py-16 lg:-mx-8 lg:px-8 lg:py-20"
+      class="-mx-4 -mt-6 mb-2 stadium-gradient grid-lines px-4 py-12 sm:-mx-6 sm:px-6 sm:py-16 lg:-mx-8 lg:px-8 lg:py-20"
     >
       <div class="relative z-10 mx-auto max-w-3xl text-center">
-        <h1 class="font-display text-4xl tracking-tight sm:text-5xl lg:text-6xl">
-          <span class="text-accent">{{ t('competitions.serie_a') }}</span>
-          <span class="mx-2 text-pitch-400/60">&middot;</span>
+        <h1 class="font-display text-4xl font-bold tracking-tight text-primary sm:text-5xl lg:text-6xl">
+          <span class="neon-text">{{ t('competitions.serie_a') }}</span>
+          <span class="mx-2 text-secondary/40">&middot;</span>
           <span>{{ t('competitions.serie_b') }}</span>
-          <span class="mx-2 text-pitch-400/60">&middot;</span>
+          <span class="mx-2 text-secondary/40">&middot;</span>
           <span>{{ t('competitions.copa_do_brasil') }}</span>
         </h1>
-        <p class="mt-3 text-sm text-pitch-200">{{ t('home.seoDescription') }}</p>
-        <div class="mx-auto mt-5 h-[2px] w-24 bg-gradient-accent" />
+        <p class="mt-3 text-sm text-secondary">{{ t('home.seoDescription') }}</p>
+        <div class="mx-auto mt-5 h-px w-24 bg-gradient-to-r from-transparent via-neon/50 to-transparent" />
       </div>
     </section>
 
-    <!-- Live Scores -->
-    <section>
-      <div class="mb-4">
-        <span class="section-label">{{ t('home.liveScores') }}</span>
-        <h2 class="section-header mt-1">{{ t('home.liveScores') }}</h2>
-        <div class="mt-1 h-[2px] w-12 bg-accent" />
-      </div>
-      <BaseErrorState v-if="liveError" @retry="refreshLive" />
-      <MatchLiveTicker v-else :matches="liveMatches" :team-map="teamMap" />
-    </section>
+    <!-- Bento Grid Dashboard (desktop) -->
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-[3fr_2fr]">
+      <!-- Left column -->
+      <div class="space-y-6">
+        <!-- Live Scores -->
+        <section>
+          <div class="mb-4">
+            <span class="section-label">{{ t('home.liveScores') }}</span>
+            <h2 class="section-header mt-1">{{ t('home.liveScores') }}</h2>
+            <div class="mt-1 h-px w-12 bg-neon/50" />
+          </div>
+          <BaseErrorState v-if="liveError" @retry="refreshLive" />
+          <MatchLiveTicker v-else :matches="liveMatches" :team-map="teamMap" />
+        </section>
 
-    <!-- Your Teams (favorites) -->
-    <section v-if="hasFavorites" class="reveal">
-      <div class="mb-4 flex items-center justify-between">
-        <div>
-          <span class="section-label">{{ t('home.yourTeams') }}</span>
-          <h2 class="section-header mt-1">{{ t('home.yourTeams') }}</h2>
-          <div class="mt-1 h-[2px] w-12 bg-accent" />
-        </div>
-        <NuxtLink to="/favorites" class="text-sm font-semibold text-pitch-700 hover:text-pitch-900">
-          {{ t('favorites.selectTeams') }} &rarr;
-        </NuxtLink>
+        <!-- Latest News -->
+        <section class="reveal">
+          <div class="mb-4 flex items-center justify-between">
+            <div>
+              <span class="section-label">{{ t('home.latestNews') }}</span>
+              <h2 class="section-header mt-1">{{ t('home.latestNews') }}</h2>
+              <div class="mt-1 h-px w-12 bg-neon/50" />
+            </div>
+            <NuxtLink
+              to="/news"
+              class="font-display text-sm font-semibold text-neon transition-colors hover:text-neon-dim"
+            >
+              {{ t('common.seeAll') }} &rarr;
+            </NuxtLink>
+          </div>
+          <BaseErrorState v-if="newsError" @retry="() => $router.go(0)" />
+          <template v-else>
+            <NewsList :articles="latestNews" :team-map="teamMap" featured />
+            <BaseEmptyState v-if="!latestNews.length" :message="t('news.noNews')" />
+          </template>
+        </section>
       </div>
-      <MatchList v-if="favoriteUpcomingMatches.length" :matches="favoriteUpcomingMatches" :team-map="teamMap" />
-      <BaseEmptyState v-else :message="t('home.noFavoriteMatches')" />
-    </section>
 
-    <!-- Latest News -->
-    <section class="reveal">
-      <div class="mb-4 flex items-center justify-between">
-        <div>
-          <span class="section-label">{{ t('home.latestNews') }}</span>
-          <h2 class="section-header mt-1">{{ t('home.latestNews') }}</h2>
-          <div class="mt-1 h-[2px] w-12 bg-accent" />
-        </div>
-        <NuxtLink to="/news" class="text-sm font-semibold text-pitch-700 hover:text-pitch-900">
-          {{ t('common.seeAll') }} &rarr;
-        </NuxtLink>
-      </div>
-      <BaseErrorState v-if="newsError" @retry="() => $router.go(0)" />
-      <template v-else>
-        <NewsList :articles="latestNews" :team-map="teamMap" featured />
-        <BaseEmptyState v-if="!latestNews.length" :message="t('news.noNews')" />
-      </template>
-    </section>
+      <!-- Right column (sidebar) -->
+      <div class="space-y-6">
+        <!-- Standings (Serie A top 5) -->
+        <section class="reveal">
+          <div class="mb-4 flex items-center justify-between">
+            <div>
+              <span class="section-label">{{ t('standings.title') }}</span>
+              <h2 class="section-header mt-1">{{ t('competitions.serie_a') }}</h2>
+              <div class="mt-1 h-px w-12 bg-neon/50" />
+            </div>
+            <NuxtLink
+              to="/standings"
+              class="font-display text-sm font-semibold text-neon transition-colors hover:text-neon-dim"
+            >
+              {{ t('common.seeAll') }} &rarr;
+            </NuxtLink>
+          </div>
+          <BaseCard glow>
+            <StandingsTable :standings="standings" :team-map="teamMap" compact />
+          </BaseCard>
+        </section>
 
-    <!-- Standings (Serie A top 5) -->
-    <section class="reveal">
-      <div class="mb-4 flex items-center justify-between">
-        <div>
-          <span class="section-label">{{ t('standings.title') }}</span>
-          <h2 class="section-header mt-1">{{ t('competitions.serie_a') }}</h2>
-          <div class="mt-1 h-[2px] w-12 bg-accent" />
-        </div>
-        <NuxtLink to="/standings" class="text-sm font-semibold text-pitch-700 hover:text-pitch-900">
-          {{ t('common.seeAll') }} &rarr;
-        </NuxtLink>
+        <!-- Your Teams (favorites) -->
+        <section v-if="hasFavorites" class="reveal">
+          <div class="mb-4 flex items-center justify-between">
+            <div>
+              <span class="section-label">{{ t('home.yourTeams') }}</span>
+              <h2 class="section-header mt-1">{{ t('home.yourTeams') }}</h2>
+              <div class="mt-1 h-px w-12 bg-gold/50" />
+            </div>
+            <NuxtLink
+              to="/favorites"
+              class="font-display text-sm font-semibold text-gold transition-colors hover:text-gold-dim"
+            >
+              {{ t('favorites.selectTeams') }} &rarr;
+            </NuxtLink>
+          </div>
+          <MatchList v-if="favoriteUpcomingMatches.length" :matches="favoriteUpcomingMatches" :team-map="teamMap" />
+          <BaseEmptyState v-else :message="t('home.noFavoriteMatches')" />
+        </section>
       </div>
-      <BaseCard editorial>
-        <StandingsTable :standings="standings" :team-map="teamMap" compact />
-      </BaseCard>
-    </section>
+    </div>
   </div>
 </template>

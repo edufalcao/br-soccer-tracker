@@ -38,31 +38,39 @@
 
 <template>
   <div class="mx-auto max-w-md py-6 sm:py-12">
-    <BaseCard class="animate-fade-in p-6 text-center">
-      <!-- Confirmed -->
-      <template v-if="confirmed">
-        <div class="mb-4 text-4xl">&#10003;</div>
-        <h1 class="mb-2 font-display text-xl tracking-tight text-pitch-950">{{ t('auth.emailConfirmed') }}</h1>
-        <p class="text-sm text-pitch-500">{{ t('auth.redirecting') }}</p>
-      </template>
+    <div class="stadium-gradient grid-lines -mx-4 -mt-6 mb-6 px-4 py-12 sm:-mx-6 sm:px-6">
+      <div class="relative z-10">
+        <BaseCard class="animate-fade-in glass p-6 text-center">
+          <!-- Confirmed -->
+          <template v-if="confirmed">
+            <div class="mb-4 text-4xl text-neon">&#10003;</div>
+            <h1 class="mb-2 font-display text-xl font-bold tracking-tight text-primary">
+              {{ t('auth.emailConfirmed') }}
+            </h1>
+            <p class="text-sm text-secondary">{{ t('auth.redirecting') }}</p>
+          </template>
 
-      <!-- Error / expired token -->
-      <template v-else-if="error">
-        <h1 class="mb-4 font-display text-xl tracking-tight text-pitch-950">{{ t('common.error') }}</h1>
-        <p class="mb-4 text-sm text-pitch-600">{{ t('auth.invalidToken') }}</p>
-        <NuxtLink
-          to="/auth/login"
-          class="inline-block rounded-lg bg-pitch-800 px-4 py-2 text-sm font-semibold tracking-wide text-white shadow-sm shadow-pitch-900/20 hover:bg-pitch-900"
-        >
-          {{ t('auth.login') }}
-        </NuxtLink>
-      </template>
+          <!-- Error / expired token -->
+          <template v-else-if="error">
+            <h1 class="mb-4 font-display text-xl font-bold tracking-tight text-primary">{{ t('common.error') }}</h1>
+            <p class="mb-4 text-sm text-secondary">{{ t('auth.invalidToken') }}</p>
+            <NuxtLink
+              to="/auth/login"
+              class="inline-block rounded-lg bg-neon px-4 py-2 text-sm font-semibold tracking-wide text-void shadow-sm transition-colors hover:bg-neon-dim"
+            >
+              {{ t('auth.login') }}
+            </NuxtLink>
+          </template>
 
-      <!-- Loading -->
-      <template v-else>
-        <div class="mb-4 mx-auto h-8 w-8 animate-spin rounded-full border-4 border-pitch-200 border-t-pitch-700" />
-        <h1 class="font-display text-xl tracking-tight text-pitch-950">{{ t('auth.confirmingAccount') }}</h1>
-      </template>
-    </BaseCard>
+          <!-- Loading -->
+          <template v-else>
+            <div class="mb-4 mx-auto h-8 w-8 animate-spin rounded-full border-4 border-line border-t-neon" />
+            <h1 class="font-display text-xl font-bold tracking-tight text-primary">
+              {{ t('auth.confirmingAccount') }}
+            </h1>
+          </template>
+        </BaseCard>
+      </div>
+    </div>
   </div>
 </template>

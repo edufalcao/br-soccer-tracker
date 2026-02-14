@@ -33,16 +33,12 @@
 <template>
   <!-- Loading skeleton -->
   <div v-if="pending" class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-    <div
-      v-for="i in 6"
-      :key="i"
-      class="overflow-hidden rounded-xl bg-gradient-card shadow-card ring-1 ring-pitch-100/50"
-    >
-      <div class="aspect-video animate-pulse bg-pitch-50" />
+    <div v-for="i in 6" :key="i" class="overflow-hidden rounded-xl glass">
+      <div class="aspect-video animate-pulse bg-card-raised" />
       <div class="space-y-2 p-4">
-        <div class="h-4 w-3/4 animate-pulse rounded bg-pitch-50" />
-        <div class="h-3 w-full animate-pulse rounded bg-pitch-50" />
-        <div class="h-3 w-1/2 animate-pulse rounded bg-pitch-50" />
+        <div class="h-4 w-3/4 animate-pulse rounded bg-card-raised" />
+        <div class="h-3 w-full animate-pulse rounded bg-card-raised" />
+        <div class="h-3 w-1/2 animate-pulse rounded bg-card-raised" />
       </div>
     </div>
   </div>

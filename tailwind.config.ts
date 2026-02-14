@@ -1,42 +1,58 @@
 import type { Config } from 'tailwindcss'
 
 export default {
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        pitch: {
-          50: '#f0fdf4',
-          100: '#dcfce7',
-          200: '#bbf7d0',
-          300: '#86efac',
-          400: '#4ade80',
-          500: '#22c55e',
-          600: '#16a34a',
-          700: '#15803d',
-          800: '#166534',
-          900: '#14532d',
-          950: '#052e16',
-        },
-        accent: {
-          DEFAULT: '#eab308',
-          dark: '#ca8a04',
-          light: '#facc15',
-        },
+        // Core backgrounds
+        void: { DEFAULT: '#020a06', light: '#f7faf8' },
         surface: {
-          DEFAULT: '#ffffff',
-          dark: '#0f172a',
-          muted: '#f4f7f2',
-          'muted-dark': '#1e293b',
+          DEFAULT: '#0a1a10',
+          raised: '#122a1a',
+          light: '#ffffff',
+          'light-muted': '#f0f5f2',
+        },
+        // Text
+        ink: {
+          DEFAULT: '#e8f5ee',
+          muted: '#7a9b88',
+          dark: '#0a1a10',
+          'dark-muted': '#5a7a68',
+        },
+        // Accents
+        neon: {
+          DEFAULT: '#00ff87',
+          dim: '#00cc6a',
+        },
+        gold: {
+          DEFAULT: '#ffd060',
+          dim: '#e8b840',
+        },
+        live: {
+          DEFAULT: '#ff3b3b',
+        },
+        // Borders & dividers
+        line: {
+          DEFAULT: '#1a3024',
+          light: '#d4e0d8',
         },
       },
       fontFamily: {
-        display: ['"DM Serif Display"', 'Georgia', 'serif'],
-        sans: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['"Chakra Petch"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['"Outfit"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
       },
       boxShadow: {
-        card: '0 1px 3px 0 rgba(20, 83, 45, 0.08), 0 1px 2px -1px rgba(20, 83, 45, 0.08)',
-        'card-hover': '0 10px 25px -5px rgba(20, 83, 45, 0.12), 0 8px 10px -6px rgba(20, 83, 45, 0.06)',
-        editorial: '0 20px 40px -12px rgba(5, 46, 22, 0.2)',
+        glow: '0 0 20px rgba(0,255,135,0.12), 0 0 3px rgba(0,255,135,0.08)',
+        'glow-gold': '0 0 20px rgba(255,208,96,0.12)',
+        'glow-live': '0 0 20px rgba(255,59,59,0.15)',
+        glass: '0 8px 32px rgba(0,0,0,0.3)',
+        'glass-light': '0 4px 24px rgba(0,0,0,0.06)',
+        float: '0 12px 40px -8px rgba(0,10,6,0.4)',
+      },
+      backdropBlur: {
+        glass: '16px',
       },
     },
   },

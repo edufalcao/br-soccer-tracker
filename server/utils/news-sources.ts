@@ -80,10 +80,10 @@ function parseRssItems(xml: string): RssNewsItem[] {
 
     if (title && link) {
       items.push({
-        title: decodeHtmlEntities(title),
+        title: stripHtmlTags(decodeHtmlEntities(title)),
         link,
         pubDate: pubDate ?? '',
-        description: description ? decodeHtmlEntities(description) : '',
+        description: description ? stripHtmlTags(decodeHtmlEntities(description)) : '',
         sourceName: sourceName ? decodeHtmlEntities(sourceName) : '',
         sourceUrl: sourceUrl ?? link,
       })
@@ -123,4 +123,8 @@ function decodeHtmlEntities(text: string): string {
     .replace(/&quot;/g, '"')
     .replace(/&#39;/g, "'")
     .replace(/&#x27;/g, "'")
+}
+
+function stripHtmlTags(text: string): string {
+  return text.replace(/<[^>]*>/g, '').trim()
 }

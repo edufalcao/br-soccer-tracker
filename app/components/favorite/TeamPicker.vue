@@ -46,10 +46,10 @@
         v-model="search"
         type="text"
         :placeholder="t('favorites.search')"
-        class="w-full rounded-lg bg-pitch-50/30 px-4 py-2.5 pl-10 text-sm outline-none ring-1 ring-pitch-100 transition-all focus:bg-white focus:ring-2 focus:ring-pitch-500"
+        class="w-full rounded-lg glass px-4 py-2.5 pl-10 text-sm text-primary outline-none ring-1 ring-line transition-all focus:ring-2 focus:ring-neon focus:shadow-glow"
       />
       <svg
-        class="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-pitch-400"
+        class="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-secondary"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
         fill="currentColor"
@@ -74,21 +74,21 @@
           class="flex items-center gap-2.5 rounded-lg p-3 text-left transition-all animate-fade-in"
           :class="[
             favoriteSet.has(team.externalId)
-              ? 'ring-2 ring-accent bg-accent/10 shadow-sm'
-              : 'ring-1 ring-pitch-100 bg-white hover:ring-pitch-200 hover:bg-pitch-50/50',
+              ? 'ring-2 ring-neon bg-neon/10 shadow-glow'
+              : 'ring-1 ring-line bg-card hover:ring-neon/30 hover:bg-card-raised',
             `stagger-${(index % 8) + 1}`,
           ]"
           @click="emit('toggle', team.externalId)"
         >
           <TeamBadge :team="team" size="sm" />
-          <span class="truncate text-sm font-medium">{{ team.name }}</span>
+          <span class="truncate text-sm font-medium text-primary">{{ team.name }}</span>
           <FavoriteStarIcon v-if="favoriteSet.has(team.externalId)" size="xs" class="ml-auto" />
         </button>
       </div>
     </div>
 
     <!-- No results -->
-    <p v-if="!filteredGroups.length && search" class="text-center text-sm text-pitch-500">
+    <p v-if="!filteredGroups.length && search" class="text-center text-sm text-secondary">
       {{ t('common.noResults') }}
     </p>
   </div>
