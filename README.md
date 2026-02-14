@@ -40,9 +40,9 @@ Edit `.env` with your keys:
 | `SUPABASE_URL`                   | Supabase project URL (local: `http://localhost:54321`)               |
 | `SUPABASE_KEY`                   | Supabase anon key                                                    |
 | `NUXT_SUPABASE_SERVICE_ROLE_KEY` | Supabase service role key (server tasks)                             |
-| `NUXT_API_FOOTBALL_KEY`          | API-Football key from [api-sports.io](https://www.api-football.com/) |
+| `NUXT_FOOTBALL_API_KEY`          | API-Football key from [api-sports.io](https://www.api-football.com/) |
 | `NUXT_GNEWS_API_KEY`             | GNews API key from [gnews.io](https://gnews.io/)                     |
-| `NUXT_FOOTBALL_DATA_KEY`         | football-data.org API key (fallback, optional)                       |
+| `NUXT_FOOTBALL_DATA_API_KEY`     | football-data.org API key (fallback, optional)                       |
 
 ### 3. Start Supabase locally
 

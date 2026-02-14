@@ -114,9 +114,9 @@ export function mapFixtureStatus(shortStatus: string): MatchStatus {
 // --- HTTP helper ---
 
 async function apiFetch<T>(endpoint: string, params: Record<string, string | number> = {}): Promise<T[]> {
-  const apiKey = useRuntimeConfig().apiFootballKey
+  const apiKey = useRuntimeConfig().footballApiKey
   if (!apiKey) {
-    throw new Error('API-Football key not configured (NUXT_API_FOOTBALL_KEY)')
+    throw new Error('API-Football key not configured (NUXT_FOOTBALL_API_KEY)')
   }
 
   const response = await $fetch<ApiFootballResponse<T>>(`${API_FOOTBALL_BASE}${endpoint}`, {
